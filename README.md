@@ -1,11 +1,13 @@
 # Dollar Empire — Remotion project
 
-A 60-second cinematic motion-graphics adaptation of **“Dollar Empire: The History and Power of the US Currency.”** The landscape and vertical compositions use the same scene architecture and frame-based synchronization map.
+A Remotion project containing a 60-second cinematic motion-graphics adaptation of **“Dollar Empire: The History and Power of the US Currency”** and a separate 15-second **Katana / NOISE** kinetic-typography film. Both have paired landscape and vertical compositions.
 
 ## Compositions
 
 - `BrettonWoods-Landscape` — 1920×1080, 30 fps, 1,800 frames
 - `BrettonWoods-Vertical` — 1080×1920, 30 fps, 1,800 frames
+- `Katana-Noise-Landscape` — 1920×1080, 30 fps, 450 frames
+- `Katana-Noise-Vertical` — 1080×1920, 30 fps, 450 frames
 
 ## Run
 
@@ -19,9 +21,11 @@ Use the Remotion Studio composition selector to switch formats. Render either fo
 ```bash
 npm run render:landscape
 npm run render:vertical
+npm run render:noise:landscape
+npm run render:noise:vertical
 ```
 
-Renders are written to `deliverables/`.
+The Katana/NOISE cut is a separate 15-second kinetic-typography sequence: perspective grid drift, pulsing nodes, a light-sweep reveal, dimensional lettering, particles, and restrained HUD framing. Its landscape and vertical renders are also written to `deliverables/`.
 
 ## Synchronization gate
 

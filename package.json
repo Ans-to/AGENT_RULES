@@ -6,6 +6,8 @@
     "dev": "remotion studio src/index.tsx --port 3000 --host 0.0.0.0",
     "render:landscape": "remotion render src/index.tsx BrettonWoods-Landscape deliverables/dollar-empire-landscape.mp4",
     "render:vertical": "remotion render src/index.tsx BrettonWoods-Vertical deliverables/dollar-empire-vertical.mp4",
+    "render:noise:landscape": "remotion render src/index.tsx Katana-Noise-Landscape deliverables/katana-noise-landscape.mp4",
+    "render:noise:vertical": "remotion render src/index.tsx Katana-Noise-Vertical deliverables/katana-noise-vertical.mp4",
     "verify:sync": "tsx scripts/verify-sync.ts"
   },
   "dependencies": {

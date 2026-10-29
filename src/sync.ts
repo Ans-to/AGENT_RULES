@@ -1,5 +1,6 @@
 export const FPS = 30;
 export const DURATION_IN_FRAMES = 1800;
+export const NOISE_DURATION_IN_FRAMES = 450;
 
 export type Cue = {
   start: number;

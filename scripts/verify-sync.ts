@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { DURATION_IN_FRAMES, FPS, sceneCues, voiceoverCues } from '../src/sync';
+import { DURATION_IN_FRAMES, FPS, NOISE_DURATION_IN_FRAMES, sceneCues, voiceoverCues } from '../src/sync';
 
 const errors: string[] = [];
 const projectRoot = resolve(process.cwd());
@@ -52,6 +52,7 @@ function audioDurationSeconds(filePath: string): number | undefined {
 
 if (FPS !== 30) errors.push(`Expected 30 fps; found ${FPS}.`);
 if (DURATION_IN_FRAMES !== 1800) errors.push(`Expected 1800 frames; found ${DURATION_IN_FRAMES}.`);
+if (NOISE_DURATION_IN_FRAMES !== 450) errors.push(`Expected the Katana/NOISE cut to be 450 frames; found ${NOISE_DURATION_IN_FRAMES}.`);
 if (voiceoverCues.length !== 4) errors.push(`Expected four voiceover cues; found ${voiceoverCues.length}.`);
 if (sceneCues.length !== 4) errors.push(`Expected four scene titles; found ${sceneCues.length}.`);
 
@@ -81,7 +82,7 @@ for (const [index, cue] of voiceoverCues.entries()) {
 if (cursor !== DURATION_IN_FRAMES) errors.push(`Voiceover cues end at ${cursor}; expected ${DURATION_IN_FRAMES}.`);
 
 const rootFile = readFileSync(resolve(projectRoot, 'src/Root.tsx'), 'utf8');
-for (const id of ['BrettonWoods-Landscape', 'BrettonWoods-Vertical']) {
+for (const id of ['BrettonWoods-Landscape', 'BrettonWoods-Vertical', 'Katana-Noise-Landscape', 'Katana-Noise-Vertical']) {
   if (!rootFile.includes(id)) errors.push(`Missing required composition: ${id}.`);
 }
 if (!rootFile.includes('width={1920}') || !rootFile.includes('height={1080}')) errors.push('Landscape dimensions must be 1920x1080.');
@@ -91,7 +92,11 @@ const videoFile = readFileSync(resolve(projectRoot, 'src/Video.tsx'), 'utf8');
 for (const token of ['backdropFilter', 'blur(20px)', '#0b0f19', '#ff4500', 'sceneCues']) {
   if (!videoFile.includes(token)) errors.push(`Video implementation is missing required visual standard: ${token}.`);
 }
-if (videoFile.includes('#000000')) errors.push('Solid black (#000000) is forbidden.');
+const noiseFile = readFileSync(resolve(projectRoot, 'src/NoiseFilm.tsx'), 'utf8');
+for (const token of ['backdropFilter', 'blur(20px)', '#0b0f19', '#ff4500', 'NOISE', 'spring(']) {
+  if (!noiseFile.includes(token)) errors.push(`Katana/NOISE implementation is missing required visual element: ${token}.`);
+}
+if (videoFile.includes('#000000') || noiseFile.includes('#000000')) errors.push('Solid black (#000000) is forbidden.');
 
 const publicAssets = resolve(projectRoot, 'public');
 if (existsSync(publicAssets)) {
