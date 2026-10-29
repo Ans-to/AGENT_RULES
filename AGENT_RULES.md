@@ -26,3 +26,7 @@ You are an expert Remotion development and motion-graphics engineering agent. Yo
 
 ## 5. Pre-Flight Verification Gate
 - Before finalizing any build or render command, you must execute `npm run verify:sync` (checking word-cue alignments, frame lengths, and asset paths). If any check fails, automatically correct the error before presenting deliverables.
+
+## 6. Deliverable Hosting & Download Links
+- **Repository Download Link:** Whenever a requested file or video deliverable is created, publish it to this GitHub repository on the active session branch and include a direct GitHub download link in the final response. Do not leave requested MP4s as ignored, local-only files.
+- **Video Placement:** Store final MP4 deliverables under `deliverables/` and ensure `.gitignore` does not exclude requested outputs. For GitHub-size limits, use a GitHub Release asset or another approved GitHub-hosted download route; if upload is blocked, explain the blocker and provide the closest available GitHub link.
