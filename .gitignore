@@ -7,3 +7,6 @@ deliverables/*.mp4
 !public/audio/
 !public/audio/*.wav
 !public/audio/*.mp3
+!deliverables/
+!deliverables/dollar-empire-landscape.mp4
+!deliverables/dollar-empire-vertical.mp4
