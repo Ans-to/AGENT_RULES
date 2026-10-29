@@ -7,6 +7,7 @@ export type Cue = {
   end: number;
   voiceover: string;
   audio: string;
+  audioFrames: number;
 };
 
 export const voiceoverCues: Cue[] = [
@@ -14,6 +15,7 @@ export const voiceoverCues: Cue[] = [
     start: 0,
     end: 300,
     audio: 'audio/part-1-hook.mp3',
+    audioFrames: 247,
     voiceover:
       "If you buy oil in Saudi Arabia, a coffee in Tokyo, or shoes in Italy... chances are, you're paying in one currency.",
   },
@@ -21,6 +23,7 @@ export const voiceoverCues: Cue[] = [
     start: 300,
     end: 750,
     audio: 'audio/part-2-origin.mp3',
+    audioFrames: 383,
     voiceover:
       "Back in 1944, at Bretton Woods, war-torn nations tied their currencies to the US dollar—because America held most of the world's gold. Even when we left the gold standard, the world stayed.",
   },
@@ -28,6 +31,7 @@ export const voiceoverCues: Cue[] = [
     start: 750,
     end: 1350,
     audio: 'audio/part-3-liquidity.mp3',
+    audioFrames: 412,
     voiceover:
       "Why? Because of trust, liquidity, and depth. The US financial markets are so massive and stable that global banks and governments keep trillions in US Treasury bonds as their ultimate safety net.",
   },
@@ -35,6 +39,7 @@ export const voiceoverCues: Cue[] = [
     start: 1350,
     end: 1800,
     audio: 'audio/part-4-crown.mp3',
+    audioFrames: 325,
     voiceover:
       "It gives America immense economic power—and immense responsibility. Love it or hate it... for now, the greenback holds the crown.",
   },

@@ -1,6 +1,6 @@
 # Dollar Empire — Remotion project
 
-A Remotion project containing a 60-second cinematic motion-graphics adaptation of **“Dollar Empire: The History and Power of the US Currency”** and a separate 15-second **Katana / NOISE** kinetic-typography film. Both have paired landscape and vertical compositions.
+A Remotion project containing a 60-second cinematic motion-graphics adaptation of **“Dollar Empire: The History and Power of the US Currency”** and a separate 15-second **Katana / NOISE** kinetic-typography film. Both have paired landscape and vertical compositions. The Dollar Empire cut uses per-letter elastic title choreography, RGB-split impacts, rolling voice-synced word captions, orbital globe/treasury visuals, parallax particles, volumetric focus blooms, and slit-scan transitions.
 
 ## Compositions
 

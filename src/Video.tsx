@@ -10,6 +10,8 @@ import {
   useVideoConfig,
 } from 'remotion';
 import { sceneCues, voiceoverCues } from './sync';
+import { KineticTitle, VoiceCaption } from './Kinetic';
+import { ImpactBloom, OpticalTransitions, OrbitalGlobe, ParticleTunnel, TreasuryColumns } from './DollarFX';
 
 type Props = { format: 'landscape' | 'vertical' };
 type SceneIndex = 0 | 1 | 2 | 3;
@@ -117,10 +119,14 @@ function Grid({ frame, width, height }: { frame: number; width: number; height: 
   );
 }
 
-function GlobalBackdrop({ frame, width, height }: { frame: number; width: number; height: number }) {
+function GlobalBackdrop({ frame, width, height, vertical }: { frame: number; width: number; height: number; vertical: boolean }) {
   const scene = frame < 300 ? 0 : frame < 750 ? 1 : frame < 1350 ? 2 : 3;
   const emphasis = [0.2, 0.65, 0.32, 0.5][scene];
   const breathing = 1 + Math.sin(frame / 90) * 0.03;
+  const sceneStart = [0, 300, 750, 1350][scene];
+  const sceneLength = [300, 450, 600, 450][scene];
+  const sceneProgress = (frame - sceneStart) / sceneLength;
+  const cameraMove = scene === 0 ? interpolate(sceneProgress, [0, 1], [1.08, 1.19]) : scene === 1 ? interpolate(sceneProgress, [0, 1], [1.14, 1.02]) : scene === 2 ? interpolate(sceneProgress, [0, 1], [1.03, 1.18]) : interpolate(sceneProgress, [0, 1], [1.2, 1]);
   const pullback = interpolate(frame, [1350, 1799], [1.2, 1], { extrapolateRight: 'clamp' });
   return (
     <>
@@ -130,11 +136,15 @@ function GlobalBackdrop({ frame, width, height }: { frame: number; width: number
         style={{
           zIndex: 2,
           background: `radial-gradient(ellipse at ${50 + Math.sin(frame / 110) * 7}% ${44 + Math.cos(frame / 130) * 6}%, rgba(255,69,0,${0.025 + emphasis * 0.035}) 0%, transparent 42%)`,
-          transform: `scale(${breathing * pullback})`,
+          transform: `scale(${breathing * pullback * cameraMove}) translate3d(${Math.sin(frame / 56) * 9}px,${Math.cos(frame / 72) * 7}px,0)`,
+          transformOrigin: `${50 + Math.sin(frame / 89) * 8}% ${48 + Math.cos(frame / 103) * 5}%`,
           pointerEvents: 'none',
         }}
       />
       <AbsoluteFill style={{ zIndex: 3, background: 'linear-gradient(90deg, rgba(5,8,14,.22), transparent 22%, transparent 78%, rgba(5,8,14,.22))', pointerEvents: 'none' }} />
+      <ParticleTunnel frame={frame} width={width} height={height} />
+      <OrbitalGlobe frame={frame} vertical={vertical} width={width} height={height} scene={scene} />
+      <TreasuryColumns frame={frame} vertical={vertical} width={width} height={height} />
     </>
   );
 }
@@ -188,19 +198,27 @@ function CardCopy({ label, detail, big, accent = palette.orange }: { label: stri
 }
 
 function Timed({
-  start, end, frame, children, mode = 'pop', vertical,
+  start, end, frame, children, mode = 'pop', vertical, chromatic = false,
 }: {
-  start: number; end: number; frame: number; children: React.ReactNode; mode?: 'pop' | 'slide' | 'flicker'; vertical: boolean;
+  start: number; end: number; frame: number; children: React.ReactNode; mode?: 'pop' | 'slide' | 'flicker'; vertical: boolean; chromatic?: boolean;
 }) {
   const local = frame - start;
   const entrance = spring({ frame: Math.max(0, local), fps: 30, config: { stiffness: mode === 'pop' ? 150 : 120, damping: mode === 'pop' ? 20 : 24, mass: mode === 'pop' ? 0.8 : 1.05 } });
   const opacity = interpolate(frame, [start, start + (mode === 'flicker' ? 15 : 13), end - 14, end], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const flicker = mode === 'flicker' && local < 24 ? (local % 5 < 3 ? 0.42 : 1) : 1;
   const translateY = mode === 'slide' ? interpolate(entrance, [0, 1], [vertical ? 38 : 52, 0]) : interpolate(entrance, [0, 1], [22, 0]);
-  const scale = mode === 'pop' ? interpolate(entrance, [0, 1], [0.86, 1]) : 1;
+  const scaleX = mode === 'pop' ? interpolate(entrance, [0, 0.55, 0.78, 1], [1.28, 0.92, 1.06, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 1;
+  const scaleY = mode === 'pop' ? interpolate(entrance, [0, 0.55, 0.78, 1], [0.72, 1.08, 0.97, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 1;
+  const glitch = chromatic ? interpolate(local, [0, 2, 9, 18], [0, 0.88, 0.36, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 0;
+  const content = chromatic ? (
+    <div style={{ position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d' }}>
+      <div style={{ position: 'absolute', inset: 0, opacity: glitch, transform: `translateX(${interpolate(local, [0, 12, 20], [10, -6, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}px)`, filter: 'drop-shadow(7px 0 rgba(255,69,0,.9)) drop-shadow(-7px 0 rgba(90,220,255,.85))', mixBlendMode: 'screen' }}>{children}</div>
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>{children}</div>
+    </div>
+  ) : children;
   return (
-    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: opacity * flicker, transform: `translate3d(0,${translateY}px,0) scale(${scale})`, pointerEvents: 'none' }}>
-      {children}
+    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: opacity * flicker, transform: `translate3d(0,${translateY}px,0) scaleX(${scaleX}) scaleY(${scaleY})`, transformStyle: 'preserve-3d', pointerEvents: 'none' }}>
+      {content}
     </div>
   );
 }
@@ -210,21 +228,13 @@ function SceneContent({ frame, vertical, width, height }: { frame: number; verti
   const cardWidth = vertical ? '82%' : 'min(760px, 72%)';
   const top = vertical ? '27%' : '22%';
   const cardTop = vertical ? '62%' : '72%';
-  const heroStyle: React.CSSProperties = {
-    width: '90%', maxWidth: 1600, textAlign: 'center', color: palette.white,
-    fontSize: heroSize, fontWeight: 850, lineHeight: 0.95, letterSpacing: '-.055em',
-    textShadow: '0 8px 45px rgba(0,0,0,.52)', textWrap: 'balance',
-  };
   const eyebrowStyle: React.CSSProperties = { position: 'absolute', top: vertical ? '17%' : '17%', width: '100%', textAlign: 'center' };
   const cardCenter: React.CSSProperties = { position: 'absolute', left: '50%', top: cardTop, transform: 'translate(-50%,-50%)', width: cardWidth };
-  const entrance = (mode: 'pop' | 'slide' | 'flicker') => mode;
   return (
     <AbsoluteFill style={{ zIndex: 20, overflow: 'hidden' }}>
       {/* Scene one: spring-pop title, clean trading statistic */}
       {frame >= 0 && frame < 300 && <>
-        <Timed start={30} end={294} frame={frame} mode={entrance('pop')} vertical={vertical}>
-          <div style={heroStyle}>GLOBAL<br />TRADE</div>
-        </Timed>
+        <KineticTitle frame={frame} start={30} end={294} lines={[[{ text: 'GLOBAL' }], [{ text: 'TRADE' }]]} fontSize={heroSize} top={vertical ? '49%' : '40%'} vertical={vertical} />
         <Timed start={90} end={290} frame={frame} mode="flicker" vertical={vertical}>
           <div style={eyebrowStyle}><Kicker>THE WORLD SETTLES HERE</Kicker></div>
         </Timed>
@@ -242,9 +252,7 @@ function SceneContent({ frame, vertical, width, height }: { frame: number; verti
       </>}
       {/* Scene two: spatial history card and minimal gold abstraction */}
       {frame >= 300 && frame < 750 && <>
-        <Timed start={320} end={744} frame={frame} mode="slide" vertical={vertical}>
-          <div style={{ ...heroStyle, top, left: '50%', transform: 'translateX(-50%)', position: 'absolute' }}><span style={{ color: palette.orange }}>1944:</span> THE PIVOT</div>
-        </Timed>
+        <KineticTitle frame={frame} start={320} end={744} lines={[[{ text: '1944:', color: palette.orange, fontFamily: 'Georgia, serif', weight: 500, italic: true }, { text: 'THE PIVOT' }]]} fontSize={heroSize} top={top} vertical={vertical} />
         <Timed start={450} end={744} frame={frame} mode="pop" vertical={vertical}>
           <GlassCard style={{ ...cardCenter, top: vertical ? '59%' : '61%', width: vertical ? '76%' : 'min(680px,66%)', padding: vertical ? '20px 22px' : '22px 34px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 15 }}>
             <CardCopy label="BRETTON WOODS" big="BACKED BY GOLD" detail="A new monetary order, anchored to the dollar." />
@@ -259,9 +267,7 @@ function SceneContent({ frame, vertical, width, height }: { frame: number; verti
       </>}
       {/* Scene three: market-network zoom, one decisive Treasury metric */}
       {frame >= 750 && frame < 1350 && <>
-        <Timed start={780} end={1344} frame={frame} mode="slide" vertical={vertical}>
-          <div style={{ ...heroStyle, top, left: '50%', transform: 'translateX(-50%)', position: 'absolute' }}>LIQUIDITY<br />&amp; TRUST</div>
-        </Timed>
+        <KineticTitle frame={frame} start={780} end={1344} lines={[[{ text: 'LIQUIDITY' }], [{ text: '& TRUST', color: palette.white, fontFamily: 'Georgia, serif', weight: 500, italic: true }]]} fontSize={heroSize} top={top} vertical={vertical} />
         <Timed start={960} end={1340} frame={frame} mode="pop" vertical={vertical}>
           <GlassCard accent="rgba(255,69,0,.44)" style={{ ...cardCenter, top: vertical ? '62%' : '64%', width: vertical ? '76%' : 'min(700px,68%)', padding: vertical ? '28px' : '34px 48px', textAlign: 'center' }}>
             <Kicker style={{ textAlign: 'center' }}>A DEEP, LIQUID MARKET</Kicker>
@@ -278,15 +284,13 @@ function SceneContent({ frame, vertical, width, height }: { frame: number; verti
       </>}
       {/* Scene four: crown reveal and restrained outro */}
       {frame >= 1350 && <>
-        <Timed start={1380} end={1558} frame={frame} mode="pop" vertical={vertical}>
-          <div style={heroStyle}>ECONOMIC<br />POWER</div>
-        </Timed>
+        <KineticTitle frame={frame} start={1380} end={1558} lines={[[{ text: 'ECONOMIC' }], [{ text: 'POWER', color: palette.orange }]]} fontSize={heroSize} top="49%" vertical={vertical} />
         <Timed start={1560} end={1799} frame={frame} mode="slide" vertical={vertical}>
-          <div style={{ position: 'absolute', top: vertical ? '28%' : '24%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: vertical ? 18 : 24, width: '92%' }}>
+          <div style={{ position: 'absolute', top: vertical ? '27%' : '21%', left: '50%', transform: `translateX(-50%) perspective(900px) rotateY(${Math.sin(frame / 11) * 14}deg) rotateZ(${Math.sin(frame / 17) * 2}deg)`, filter: 'drop-shadow(0 12px 35px rgba(214,181,109,.34))' }}>
             <CrownMark size={vertical ? 174 : 238} />
-            <div style={{ ...heroStyle, fontSize: Math.min(width * (vertical ? 0.078 : 0.061), height * (vertical ? 0.074 : 0.13)), width: '100%' }}>THE KING OF<br />CURRENCIES</div>
           </div>
         </Timed>
+        <KineticTitle frame={frame} start={1560} end={1799} lines={[[{ text: 'THE KING OF' }], [{ text: 'CURRENCIES', color: palette.orange }]]} fontSize={Math.min(width * (vertical ? 0.12 : 0.061), height * (vertical ? 0.075 : 0.13))} top={vertical ? '45%' : '47%'} vertical={vertical} />
         <Timed start={1700} end={1799} frame={frame} mode="flicker" vertical={vertical}>
           <div style={{ position: 'absolute', top: vertical ? '57%' : '62%', width: '100%', textAlign: 'center' }}>
             <GlassCard accent="rgba(255,69,0,.36)" style={{ display: 'inline-block', padding: vertical ? '12px 24px' : '14px 30px' }}>
@@ -320,9 +324,12 @@ export const DollarEmpire: React.FC<Props> = ({ format }) => {
         </Sequence>
       ))}
       <AbsoluteFill style={{ opacity: transition }}>
-        <GlobalBackdrop frame={frame} width={width} height={height} />
+        <GlobalBackdrop frame={frame} width={width} height={height} vertical={vertical} />
+        <ImpactBloom frame={frame} vertical={vertical} />
         <SceneContent frame={frame} vertical={vertical} width={width} height={height} />
+        <VoiceCaption frame={frame} vertical={vertical} />
       </AbsoluteFill>
+      <OpticalTransitions frame={frame} width={width} height={height} vertical={vertical} />
     </AbsoluteFill>
   );
 };

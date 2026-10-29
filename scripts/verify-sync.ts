@@ -63,6 +63,8 @@ for (const [index, cue] of voiceoverCues.entries()) {
   if (cue.end > DURATION_IN_FRAMES) errors.push(`Voiceover cue ${index + 1} exceeds the composition length.`);
   if (!cue.voiceover.trim()) errors.push(`Voiceover cue ${index + 1} is empty.`);
   if (!cue.audio) errors.push(`Voiceover cue ${index + 1} has no audio asset.`);
+  if (!cue.audioFrames || cue.audioFrames <= 0) errors.push(`Voiceover cue ${index + 1} has no valid audio frame duration.`);
+  else if (cue.audioFrames > cue.end - cue.start) errors.push(`Voiceover cue ${index + 1} audio exceeds its cue frame range.`);
   else {
     const audioPath = resolve(projectRoot, 'public', cue.audio);
     if (!existsSync(audioPath)) errors.push(`Voiceover cue ${index + 1} references missing audio: public/${cue.audio}.`);
@@ -72,6 +74,7 @@ for (const [index, cue] of voiceoverCues.entries()) {
       else {
         const cueDuration = (cue.end - cue.start) / FPS;
         if (duration > cueDuration) errors.push(`Cue ${index + 1} narration runs ${duration.toFixed(2)}s, past its ${cueDuration.toFixed(2)}s slot.`);
+        if (Math.abs(duration * FPS - cue.audioFrames) > 2) errors.push(`Cue ${index + 1} audioFrames metadata does not match the encoded audio duration.`);
         const wordsPerMinute = cue.voiceover.trim().split(/\s+/).length / duration * 60;
         if (wordsPerMinute < 75 || wordsPerMinute > 210) errors.push(`Cue ${index + 1} pacing is ${wordsPerMinute.toFixed(0)} words/min; expected 75–210.`);
       }
