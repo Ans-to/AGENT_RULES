@@ -1,0 +1,549 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 9,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 0 has 8 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene1\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene1",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene2\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene2",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene3\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene3",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene4\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene4",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene5\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene5",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene5\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene6\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene6",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene6\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene7\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene7",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene7\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene8\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene8",
+        "dataAttributes": {},
+        "sourceFile": "/home/user/AGENT_RULES/video/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene8\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 66.36666666666666,
+    "samples": [
+      3.687,
+      11.061,
+      18.435,
+      25.809,
+      33.183,
+      40.557,
+      47.931,
+      55.306,
+      62.68
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      3.687,
+      18.435,
+      33.183,
+      47.931,
+      62.68
+    ],
+    "checked": 54,
+    "passed": 54
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 34 text elements stay under it for 0.5 s or more, the smallest \"INVOICING\" at 15 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "INVOICING",
+        "selector": "div.netitem.t1 > small:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1337.18,
+          "y": 285.75,
+          "width": 96.26,
+          "height": 18.01
+        },
+        "time": 38.12,
+        "times": [
+          0,
+          0,
+          7.749,
+          7.749,
+          7.874,
+          7.874,
+          8.999,
+          20.622,
+          20.622,
+          20.872,
+          29.121,
+          29.121,
+          30.496,
+          30.496,
+          36.995,
+          36.995,
+          38.12,
+          38.12,
+          39.62,
+          39.62,
+          41.12,
+          41.12,
+          44.494,
+          44.494,
+          44.619,
+          44.619,
+          50.994,
+          50.994,
+          51.119,
+          52.243,
+          52.618,
+          52.868,
+          57.368,
+          57.368
+        ],
+        "fontPx": 15.3,
+        "floorPx": 28,
+        "seconds": 6.374,
+        "elements": [
+          {
+            "selector": "div.netitem.t1 > small:nth-of-type(1)",
+            "text": "INVOICING",
+            "fontPx": 15.3,
+            "time": 38.12,
+            "seconds": 6.374
+          },
+          {
+            "selector": "div.goldbar.broken-gold > small:nth-of-type(1)",
+            "text": "CONVERTIBILITY",
+            "fontPx": 15.55,
+            "time": 20.872,
+            "seconds": 8.249
+          },
+          {
+            "selector": "#scene1 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 7.749
+          },
+          {
+            "selector": "#scene2 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 7.749,
+            "seconds": 12.873
+          },
+          {
+            "selector": "div.anchor > div:nth-of-type(3) > small:nth-of-type(1)",
+            "text": "$35 / OUNCE",
+            "fontPx": 16,
+            "time": 8.999,
+            "seconds": 11.623
+          },
+          {
+            "selector": "#scene3 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 20.622,
+            "seconds": 8.499
+          },
+          {
+            "selector": "#scene4 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 29.121,
+            "seconds": 7.874
+          },
+          {
+            "selector": "div.bond.b3 > small:nth-of-type(1)",
+            "text": "UNITED STATES",
+            "fontPx": 16,
+            "time": 30.496,
+            "seconds": 6.499
+          },
+          {
+            "selector": "#scene5 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 36.995,
+            "seconds": 7.499
+          },
+          {
+            "selector": "#scene6 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 44.494,
+            "seconds": 6.5
+          },
+          {
+            "selector": "#scene7 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 50.994,
+            "seconds": 6.374
+          },
+          {
+            "selector": "#scene8 > div:nth-of-type(5)",
+            "text": "DOLLAR SYSTEM A VISUAL EXPLAINER",
+            "fontPx": 16,
+            "time": 57.368,
+            "seconds": 8.999
+          },
+          {
+            "selector": "div.curr.usd > small:nth-of-type(1)",
+            "text": "US DOLLAR",
+            "fontPx": 16.24,
+            "time": 51.119,
+            "seconds": 6.249
+          },
+          {
+            "selector": "div.netitem.t2 > small:nth-of-type(1)",
+            "text": "LENDING",
+            "fontPx": 16.3,
+            "time": 39.62,
+            "seconds": 4.874
+          },
+          {
+            "selector": "div.netitem.t3 > small:nth-of-type(1)",
+            "text": "CENTRAL BANKS",
+            "fontPx": 16.93,
+            "time": 41.12,
+            "seconds": 3.374
+          },
+          {
+            "selector": "#scene1 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 01",
+            "fontPx": 17,
+            "time": 0,
+            "seconds": 7.749
+          },
+          {
+            "selector": "#scene2 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 02",
+            "fontPx": 17,
+            "time": 7.749,
+            "seconds": 12.873
+          },
+          {
+            "selector": "#scene3 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 03",
+            "fontPx": 17,
+            "time": 20.622,
+            "seconds": 8.499
+          },
+          {
+            "selector": "#scene4 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 04",
+            "fontPx": 17,
+            "time": 29.121,
+            "seconds": 7.874
+          },
+          {
+            "selector": "#scene5 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 05",
+            "fontPx": 17,
+            "time": 36.995,
+            "seconds": 7.499
+          },
+          {
+            "selector": "#scene6 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 06",
+            "fontPx": 17,
+            "time": 44.494,
+            "seconds": 6.5
+          },
+          {
+            "selector": "#scene7 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 07",
+            "fontPx": 17,
+            "time": 50.994,
+            "seconds": 6.374
+          },
+          {
+            "selector": "div.curr.eur > small:nth-of-type(1)",
+            "text": "EURO",
+            "fontPx": 17,
+            "time": 52.243,
+            "seconds": 5.125
+          },
+          {
+            "selector": "div.curr.yen > small:nth-of-type(1)",
+            "text": "YEN",
+            "fontPx": 17,
+            "time": 52.618,
+            "seconds": 4.75
+          },
+          {
+            "selector": "div.curr.pound > small:nth-of-type(1)",
+            "text": "POUND",
+            "fontPx": 17,
+            "time": 52.868,
+            "seconds": 4.5
+          },
+          {
+            "selector": "#scene8 > div:nth-of-type(2)",
+            "text": "WORLD CURRENCY 08",
+            "fontPx": 17,
+            "time": 57.368,
+            "seconds": 8.999
+          },
+          {
+            "selector": "div.bond.b3 > span:nth-of-type(1)",
+            "text": "SECURITY",
+            "fontPx": 18,
+            "time": 30.496,
+            "seconds": 6.499
+          },
+          {
+            "selector": "div.ticket > small:nth-of-type(1)",
+            "text": "INTERNATIONALMONETARY ORDER",
+            "fontPx": 19.04,
+            "time": 7.874,
+            "seconds": 12.748
+          },
+          {
+            "selector": "div.ticket > b:nth-of-type(1)",
+            "text": "BRETTON WOODS",
+            "fontPx": 21.89,
+            "time": 7.874,
+            "seconds": 12.748
+          },
+          {
+            "selector": "div.netitem.t1 > b:nth-of-type(1)",
+            "text": "TRADE",
+            "fontPx": 23.41,
+            "time": 38.12,
+            "seconds": 6.374
+          },
+          {
+            "selector": "div.cycle",
+            "text": "MORE USERS",
+            "fontPx": 23.84,
+            "time": 44.619,
+            "seconds": 6.375
+          },
+          {
+            "selector": "div.cycle > b:nth-of-type(1)",
+            "text": "MORE USEFUL",
+            "fontPx": 23.84,
+            "time": 44.619,
+            "seconds": 6.375
+          },
+          {
+            "selector": "div.netitem.t2 > b:nth-of-type(1)",
+            "text": "BANKS",
+            "fontPx": 24.93,
+            "time": 39.62,
+            "seconds": 4.874
+          },
+          {
+            "selector": "div.netitem.t3 > b:nth-of-type(1)",
+            "text": "RESERVES",
+            "fontPx": 25.89,
+            "time": 41.12,
+            "seconds": 3.374
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 531
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  },
+  "saved": {
+    "id": "e7a80cd5-af6b-4a55-a626-6c7c0636632e",
+    "revision": "8ae15959-8538-4ee1-ba03-b6becba3e873",
+    "report": "/home/user/AGENT_RULES/video/.hyperframes/artifacts/checks/e7a80cd5-af6b-4a55-a626-6c7c0636632e.json",
+    "attribution": "recorded-revision"
+  },
+  "_meta": {
+    "version": "0.8.216",
+    "latestVersion": "0.8.216",
+    "updateAvailable": false
+  }
+}
