@@ -1,0 +1,99 @@
+name: Render Blender video
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      DOLLAR_FRAMES_DIR: ${{ runner.temp }}/dollar_frames
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      GALLIUM_DRIVER: llvmpipe
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install FFmpeg and software graphics dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg xvfb libgl1 libgl1-mesa-dri libegl1 libxrender1 libxi6 libxxf86vm1 libxfixes3 libxkbcommon0 libsm6 libice6
+
+      - name: Download latest stable Blender
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os, re, tarfile, urllib.request
+          from pathlib import Path
+
+          base = 'https://download.blender.org/release/'
+          def read(url):
+              with urllib.request.urlopen(url, timeout=60) as response:
+                  return response.read().decode('utf-8')
+          versions = {tuple(map(int, v.split('.'))) for v in re.findall(r'href="Blender(\d+\.\d+)/"', read(base))}
+          if not versions:
+              raise RuntimeError('No Blender release directories found')
+          for major, minor in sorted(versions, reverse=True):
+              url = f'{base}Blender{major}.{minor}/'
+              try:
+                  listing = read(url)
+              except Exception as exc:
+                  print(f'Skipping {url}: {exc}', flush=True)
+                  continue
+              files = set(re.findall(r'href="(blender-(\d+\.\d+\.\d+)-linux-x64\.tar\.xz)"', listing))
+              if not files:
+                  continue
+              filename, version = max(files, key=lambda item: tuple(map(int, item[1].split('.'))))
+              archive = Path(os.environ['RUNNER_TEMP']) / filename
+              print(f'Downloading Blender {version}: {url + filename}', flush=True)
+              urllib.request.urlretrieve(url + filename, archive)
+              target = Path(os.environ['RUNNER_TEMP']) / 'blender-install'
+              target.mkdir(exist_ok=True)
+              with tarfile.open(archive, 'r:xz') as tar:
+                  tar.extractall(target, filter='data')
+              binary = next(target.glob('blender-*/blender'))
+              with open(os.environ['GITHUB_PATH'], 'a', encoding='utf-8') as f:
+                  f.write(str(binary.parent) + '\n')
+              break
+          else:
+              raise RuntimeError('No stable Linux x64 Blender archive found')
+          PY
+          # GITHUB_PATH affects subsequent steps, so locate this step's binary directly.
+          "$RUNNER_TEMP"/blender-install/blender-*/blender --version
+
+      - name: Render the 60-second PNG sequence
+        run: |
+          mkdir -p "$DOLLAR_FRAMES_DIR"
+          xvfb-run -a --server-args='-screen 0 1920x1080x24' \
+            blender --background --factory-startup --python-exit-code 1 \
+            --python video/blender-dollar/build_vertical_dollar.py
+
+      - name: Verify and encode MP4
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          directory = Path(os.environ['DOLLAR_FRAMES_DIR'])
+          missing = [i for i in range(1, 3601) if not (directory / f'{i:04d}.png').is_file()]
+          if missing:
+              raise SystemExit(f'Missing {len(missing)} frames; first missing: {missing[:10]}')
+          PY
+          ffmpeg -hide_banner -loglevel error -y -framerate 60 -start_number 1 \
+            -i "$DOLLAR_FRAMES_DIR/%04d.png" -frames:v 3600 \
+            -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -r 60 \
+            -movflags +faststart final_video.mp4
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate \
+            -of default=noprint_wrappers=1 final_video.mp4
+
+      - name: Upload video
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender-final-video
+          path: final_video.mp4
+          if-no-files-found: error
+          retention-days: 14
