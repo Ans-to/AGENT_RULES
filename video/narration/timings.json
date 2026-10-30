@@ -1,0 +1,58 @@
+{
+  "voice": "am_adam",
+  "engine": "kokoro-onnx",
+  "speed": 0.93,
+  "pause_between_scenes_seconds": 0.22,
+  "segments": [
+    {
+      "scene": 1,
+      "start_seconds": 0.0,
+      "duration_seconds": 6.336,
+      "text": "Why does the world rely on the U.S. dollar? It wasn't decided by one law. It grew into a system."
+    },
+    {
+      "scene": 2,
+      "start_seconds": 6.556,
+      "duration_seconds": 9.792,
+      "text": "In nineteen forty-four, countries met at Bretton Woods. They tied their currencies to the dollar, while foreign central banks could exchange dollars for U.S. gold."
+    },
+    {
+      "scene": 3,
+      "start_seconds": 16.568,
+      "duration_seconds": 6.549,
+      "text": "In nineteen seventy-one, the U.S. closed the gold window. The link broke\u2014but the dollar's role survived."
+    },
+    {
+      "scene": 4,
+      "start_seconds": 23.337,
+      "duration_seconds": 7.317,
+      "text": "Today, the large U.S. economy and deep Treasury market give investors a place to hold and trade dollar assets."
+    },
+    {
+      "scene": 5,
+      "start_seconds": 30.875,
+      "duration_seconds": 6.187,
+      "text": "Businesses invoice trade in dollars. Banks lend in dollars. Central banks hold dollar reserves."
+    },
+    {
+      "scene": 6,
+      "start_seconds": 37.281,
+      "duration_seconds": 5.781,
+      "text": "Each use reinforces the others. The more people accept dollars, the more useful dollars become."
+    },
+    {
+      "scene": 7,
+      "start_seconds": 43.283,
+      "duration_seconds": 5.803,
+      "text": "But dominance isn't permanent. Other currencies compete, and confidence in any system can change."
+    },
+    {
+      "scene": 8,
+      "start_seconds": 49.305,
+      "duration_seconds": 7.083,
+      "text": "The dollar leads not because it's the world's only currency, but because history, markets, and habit keep connecting the world to it."
+    }
+  ],
+  "duration_seconds": 56.388,
+  "note": "Scene timing is measured; word-level alignment is not available."
+}

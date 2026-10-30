@@ -1,0 +1,5 @@
+display_name: Video Analysis Skill
+short_description: Evidence-first video analysis from metadata, frames, contact sheets, subtitles, OCR, and optional local ASR.
+default_prompt: Use Video Analysis Skill to materialize video evidence artifacts before summarizing visible scenes, on-screen text, or spoken content.
+install_prompt: Run python scripts/doctor.py --profile full --repair-plan, present missing tools or model-cache gaps, then ask before changing the system.
+repair_reference: references/install-and-repair.md

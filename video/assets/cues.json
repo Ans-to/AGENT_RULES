@@ -1,0 +1,58 @@
+[
+  {
+    "index": 1,
+    "start": 0.55,
+    "duration": 6.933,
+    "text": "Why does the world rely on the US dollar? The answer isn't one law. It's a system built over decades.",
+    "file": "assets/audio/voice-1.wav"
+  },
+  {
+    "index": 2,
+    "start": 7.833,
+    "duration": 12.565,
+    "text": "In nineteen forty four, delegates at Bretton Woods designed a new monetary order. Many currencies were tied to the dollar, and foreign central banks could exchange dollars for American gold.",
+    "file": "assets/audio/voice-2.wav"
+  },
+  {
+    "index": 3,
+    "start": 20.749,
+    "duration": 8.107,
+    "text": "In nineteen seventy one, the United States closed that gold window. The link broke, but the dollar's central role survived.",
+    "file": "assets/audio/voice-3.wav"
+  },
+  {
+    "index": 4,
+    "start": 29.205,
+    "duration": 7.531,
+    "text": "Why? America's huge economy and deep Treasury market offer investors a place to hold and trade dollar assets.",
+    "file": "assets/audio/voice-4.wav"
+  },
+  {
+    "index": 5,
+    "start": 37.086,
+    "duration": 7.125,
+    "text": "Businesses invoice global trade in dollars. Banks lend in dollars. Central banks keep dollar reserves.",
+    "file": "assets/audio/voice-5.wav"
+  },
+  {
+    "index": 6,
+    "start": 44.561,
+    "duration": 6.144,
+    "text": "Each use reinforces the others: the more people accept dollars, the more useful dollars become.",
+    "file": "assets/audio/voice-6.wav"
+  },
+  {
+    "index": 7,
+    "start": 51.055,
+    "duration": 6.08,
+    "text": "That network is powerful, but not permanent. Other currencies compete, and confidence can change.",
+    "file": "assets/audio/voice-7.wav"
+  },
+  {
+    "index": 8,
+    "start": 57.485,
+    "duration": 7.872,
+    "text": "The dollar leads not because it's the world's only currency, but because history, markets, and habit keep connecting the world to it.",
+    "file": "assets/audio/voice-8.wav"
+  }
+]
