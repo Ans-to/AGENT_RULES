@@ -1,9 +1,0 @@
-__pycache__/
-.pytest_cache/
-*.pyc
-.venv/
-artifacts/
-dist/
-*.bundle
-*.zip
-.DS_Store

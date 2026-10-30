@@ -1,4 +1,0 @@
-# Reproducible local dependencies, builds, and image sequences.
-/node_modules/
-/dist/
-/output/
