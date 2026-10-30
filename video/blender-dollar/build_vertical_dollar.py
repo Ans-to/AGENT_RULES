@@ -336,8 +336,19 @@ scene.render.resolution_y = 1920
 scene.render.resolution_percentage = 100
 scene.render.fps = FPS
 scene.render.fps_base = 1
-scene.frame_start = 1
-scene.frame_end = 3600
+# Each CI worker evaluates the complete original timeline but renders only its
+# assigned inclusive range. Local interactive builds always retain all frames.
+if CI_MODE:
+    try:
+        first_frame = int(os.environ.get('DOLLAR_FRAME_START', '1'))
+        last_frame = int(os.environ.get('DOLLAR_FRAME_END', '3600'))
+    except ValueError as exc:
+        raise ValueError('Chunk frame bounds must be integers') from exc
+    if not 1 <= first_frame <= last_frame <= 3600:
+        raise ValueError('Chunk must satisfy 1 <= start <= end <= 3600')
+    scene.frame_start, scene.frame_end = first_frame, last_frame
+else:
+    scene.frame_start, scene.frame_end = 1, 3600
 scene.render.image_settings.file_format = 'PNG'
 scene.render.image_settings.color_mode = 'RGBA'
 if CI_MODE:
@@ -675,7 +686,7 @@ scene.frame_set(1)
 print('Built scene %r: frames 1..3600, 1080x1920, 60 fps, engine %s.' % (scene.name,scene.render.engine))
 print('Motion blur shutter 0.5 frame = 180 degrees where supported by the engine.')
 if CI_MODE and os.environ.get('DOLLAR_BUILD_ONLY') != '1':
-    print('GitHub Actions: rendering PNG sequence to', scene.render.filepath, flush=True)
+    print('GitHub Actions: rendering frames', scene.frame_start, 'through', scene.frame_end, 'to', scene.render.filepath, flush=True)
     bpy.ops.render.render(animation=True, scene=scene.name)
 else:
     print('No frames rendered. Save the .blend and use the optional block below.')

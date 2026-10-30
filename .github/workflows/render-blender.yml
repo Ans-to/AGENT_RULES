@@ -7,93 +7,160 @@ permissions:
   contents: read
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      blender_url: ${{ steps.blender.outputs.url }}
+      blender_version: ${{ steps.blender.outputs.version }}
+    steps:
+      - name: Resolve latest stable Blender once for all chunks
+        id: blender
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os, re, urllib.request
+          base = 'https://download.blender.org/release/'
+          def read(url):
+              with urllib.request.urlopen(url, timeout=60) as response:
+                  return response.read().decode('utf-8')
+          dirs = {tuple(map(int, v.split('.'))) for v in re.findall(r'href="Blender(\d+\.\d+)/"', read(base))}
+          for major, minor in sorted(dirs, reverse=True):
+              url = f'{base}Blender{major}.{minor}/'
+              listing = read(url)
+              files = set(re.findall(r'href="(blender-(\d+\.\d+\.\d+)-linux-x64\.tar\.xz)"', listing))
+              if files:
+                  filename, version = max(files, key=lambda item: tuple(map(int, item[1].split('.'))))
+                  with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                      out.write(f'url={url}{filename}\nversion={version}\n')
+                  print(f'Using Blender {version} for every chunk')
+                  break
+          else:
+              raise RuntimeError('No stable Linux x64 Blender release found')
+          PY
+
   render:
+    needs: prepare
     runs-on: ubuntu-latest
     timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        chunk: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
     env:
       DOLLAR_FRAMES_DIR: ${{ runner.temp }}/dollar_frames
       LIBGL_ALWAYS_SOFTWARE: '1'
       GALLIUM_DRIVER: llvmpipe
+      CHUNK_INDEX: ${{ matrix.chunk }}
+      BLENDER_URL: ${{ needs.prepare.outputs.blender_url }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Define inclusive frame range
+        shell: bash
+        run: |
+          start=$((CHUNK_INDEX * 100 + 1))
+          end=$((start + 99))
+          printf 'DOLLAR_FRAME_START=%s\nDOLLAR_FRAME_END=%s\nCHUNK_ID=%02d\n' "$start" "$end" "$CHUNK_INDEX" >> "$GITHUB_ENV"
+          echo "Chunk $CHUNK_INDEX: frames $start–$end"
 
       - name: Install FFmpeg and software graphics dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg xvfb libgl1 libgl1-mesa-dri libegl1 libxrender1 libxi6 libxxf86vm1 libxfixes3 libxkbcommon0 libsm6 libice6
 
-      - name: Download latest stable Blender
+      - name: Download Blender
         shell: bash
         run: |
-          python3 - <<'PY'
-          import os, re, tarfile, urllib.request
-          from pathlib import Path
+          curl --fail --location --retry 3 "$BLENDER_URL" --output "$RUNNER_TEMP/blender.tar.xz"
+          mkdir -p "$RUNNER_TEMP/blender-install"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender-install"
+          blender_dir=$(find "$RUNNER_TEMP/blender-install" -mindepth 1 -maxdepth 1 -type d -name 'blender-*' -print -quit)
+          test -x "$blender_dir/blender"
+          echo "$blender_dir" >> "$GITHUB_PATH"
+          "$blender_dir/blender" --version
 
-          base = 'https://download.blender.org/release/'
-          def read(url):
-              with urllib.request.urlopen(url, timeout=60) as response:
-                  return response.read().decode('utf-8')
-          versions = {tuple(map(int, v.split('.'))) for v in re.findall(r'href="Blender(\d+\.\d+)/"', read(base))}
-          if not versions:
-              raise RuntimeError('No Blender release directories found')
-          for major, minor in sorted(versions, reverse=True):
-              url = f'{base}Blender{major}.{minor}/'
-              try:
-                  listing = read(url)
-              except Exception as exc:
-                  print(f'Skipping {url}: {exc}', flush=True)
-                  continue
-              files = set(re.findall(r'href="(blender-(\d+\.\d+\.\d+)-linux-x64\.tar\.xz)"', listing))
-              if not files:
-                  continue
-              filename, version = max(files, key=lambda item: tuple(map(int, item[1].split('.'))))
-              archive = Path(os.environ['RUNNER_TEMP']) / filename
-              print(f'Downloading Blender {version}: {url + filename}', flush=True)
-              urllib.request.urlretrieve(url + filename, archive)
-              target = Path(os.environ['RUNNER_TEMP']) / 'blender-install'
-              target.mkdir(exist_ok=True)
-              with tarfile.open(archive, 'r:xz') as tar:
-                  tar.extractall(target, filter='data')
-              binary = next(target.glob('blender-*/blender'))
-              with open(os.environ['GITHUB_PATH'], 'a', encoding='utf-8') as f:
-                  f.write(str(binary.parent) + '\n')
-              break
-          else:
-              raise RuntimeError('No stable Linux x64 Blender archive found')
-          PY
-          # GITHUB_PATH affects subsequent steps, so locate this step's binary directly.
-          "$RUNNER_TEMP"/blender-install/blender-*/blender --version
-
-      - name: Render the 60-second PNG sequence
+      - name: Render assigned PNG frames
         run: |
           mkdir -p "$DOLLAR_FRAMES_DIR"
           xvfb-run -a --server-args='-screen 0 1920x1080x24' \
             blender --background --factory-startup --python-exit-code 1 \
             --python video/blender-dollar/build_vertical_dollar.py
 
-      - name: Verify and encode MP4
+      - name: Verify and encode chunk
         shell: bash
         run: |
           python3 - <<'PY'
           import os
           from pathlib import Path
           directory = Path(os.environ['DOLLAR_FRAMES_DIR'])
-          missing = [i for i in range(1, 3601) if not (directory / f'{i:04d}.png').is_file()]
+          first, last = int(os.environ['DOLLAR_FRAME_START']), int(os.environ['DOLLAR_FRAME_END'])
+          missing = [i for i in range(first, last + 1) if not (directory / f'{i:04d}.png').is_file()]
           if missing:
               raise SystemExit(f'Missing {len(missing)} frames; first missing: {missing[:10]}')
           PY
-          ffmpeg -hide_banner -loglevel error -y -framerate 60 -start_number 1 \
-            -i "$DOLLAR_FRAMES_DIR/%04d.png" -frames:v 3600 \
+          ffmpeg -hide_banner -loglevel error -y -framerate 60 -start_number "$DOLLAR_FRAME_START" \
+            -i "$DOLLAR_FRAMES_DIR/%04d.png" -frames:v 100 \
             -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -r 60 \
-            -movflags +faststart final_video.mp4
-          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate \
-            -of default=noprint_wrappers=1 final_video.mp4
+            -movflags +faststart "chunk-$CHUNK_ID.mp4"
 
-      - name: Upload video
+      - name: Upload chunk for assembly
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender-chunk-${{ env.CHUNK_ID }}
+          path: chunk-${{ env.CHUNK_ID }}.mp4
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 7
+
+  assemble:
+    needs: render
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Download all chunks
+        uses: actions/download-artifact@v4
+        with:
+          pattern: blender-chunk-*
+          path: chunks
+
+      - name: Concatenate and verify final MP4
+        shell: bash
+        run: |
+          for id in $(seq -w 0 35); do
+            file="$PWD/chunks/blender-chunk-$id/chunk-$id.mp4"
+            test -s "$file" || { echo "Missing $file" >&2; exit 1; }
+            printf "file '%s'\n" "$file" >> concat.txt
+          done
+          ffmpeg -hide_banner -loglevel error -y -f concat -safe 0 -i concat.txt \
+            -c copy -movflags +faststart final_video.mp4
+          ffprobe -v error -select_streams v:0 -count_frames \
+            -show_entries stream=codec_name,width,height,r_frame_rate,nb_read_frames:format=duration \
+            -of json final_video.mp4 > final-probe.json
+          python3 - <<'PY'
+          import json
+          with open('final-probe.json', encoding='utf-8') as f:
+              probe = json.load(f)
+          stream = probe['streams'][0]
+          print(json.dumps(probe, indent=2))
+          assert stream['codec_name'] == 'h264'
+          assert (stream['width'], stream['height']) == (1080, 1920)
+          assert stream['r_frame_rate'] == '60/1'
+          assert int(stream['nb_read_frames']) == 3600
+          assert abs(float(probe['format']['duration']) - 60) < .05
+          PY
+
+      - name: Upload complete video
         uses: actions/upload-artifact@v4
         with:
           name: blender-final-video
           path: final_video.mp4
           if-no-files-found: error
+          overwrite: true
           retention-days: 14
