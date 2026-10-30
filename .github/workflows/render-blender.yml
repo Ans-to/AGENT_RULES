@@ -2,6 +2,9 @@ name: Render Blender video
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - arena/b7910db9-agent-rules
 
 permissions:
   contents: read
