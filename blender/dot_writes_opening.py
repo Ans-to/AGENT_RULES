@@ -170,13 +170,13 @@ for a,b,L in all_segments:
     f0=1+int(cum/total_path*FPS*4.8); cum+=L; f1=1+int(cum/total_path*FPS*4.8)
     dot.location=a; dot.keyframe_insert(data_path='location',frame=f0)
     dot.location=b; dot.keyframe_insert(data_path='location',frame=max(f0+1,f1))
-# Tail/glow-like aura: small transparent-free emissive rings that stay tasteful.
-for frame in range(1,END+1):
-    scene.frame_set(frame)
-    if frame < FPS*4.9:
-        dot.hide_render=False
-    else:
-        dot.hide_render=True
+# Keep the writing point visible while tracing, then hide it before the title resolves.
+dot.hide_render = False
+dot.keyframe_insert(data_path='hide_render', frame=1)
+dot.hide_render = False
+dot.keyframe_insert(data_path='hide_render', frame=int(FPS*4.75))
+dot.hide_render = True
+dot.keyframe_insert(data_path='hide_render', frame=int(FPS*4.9))
 # Title and supporting copy fade in after the writing completes.
 def text_obj(body,name,size,loc,material):
     cu=bpy.data.curves.new(name,'FONT'); cu.body=body; cu.size=size; cu.align_x='CENTER'; cu.extrude=0
