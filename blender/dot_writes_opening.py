@@ -184,7 +184,6 @@ def text_obj(body,name,size,loc,material):
 title=text_obj(TEXT,'Final title',0.58,(0,-2.65,0.2),white)
 title.data.size=0.58
 for frame,val in [(1,0.0),(FPS*4,0.0),(FPS*5.3,1.0)]:
-    title.data.alpha=val if hasattr(title.data,'alpha') else 1.0
     title.scale=(0.92,0.92,0.92) if val==0 else (1,1,1)
     title.keyframe_insert(data_path='scale',frame=frame)
 sub=text_obj('A STORY IN MOTION','Subline',0.19,(0,-3.28,0.2),muted)
