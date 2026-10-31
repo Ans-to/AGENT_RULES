@@ -1,0 +1,57 @@
+name: Render dot-writing Blender opener
+
+on:
+  workflow_dispatch:
+    inputs:
+      opening_text:
+        description: "Words the glowing dot should write (A-Z, digits, punctuation)"
+        required: true
+        default: "IDEAS CHANGE EVERYTHING"
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Install Blender and ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y blender ffmpeg
+          blender --version
+          ffmpeg -version | head -n 2
+
+      - name: Render animation
+        env:
+          OPENING_TEXT: ${{ inputs.opening_text }}
+        run: |
+          mkdir -p output
+          blender -b --python blender/dot_writes_opening.py -- --output output/dot_writes_opening.mp4
+
+      - name: Validate rendered video
+        run: |
+          test -s output/dot_writes_opening.mp4
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate -of json output/dot_writes_opening.mp4
+          python3 - <<'PY'
+          import json, subprocess
+          p = subprocess.run([
+              "ffprobe", "-v", "error", "-show_entries", "format=duration",
+              "-of", "json", "output/dot_writes_opening.mp4"
+          ], check=True, capture_output=True, text=True)
+          duration = float(json.loads(p.stdout)["format"]["duration"])
+          assert duration >= 7.5, f"Unexpectedly short render: {duration}s"
+          print(f"Render validated: {duration:.2f}s")
+          PY
+
+      - name: Upload MP4 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dot-writes-opening
+          path: output/dot_writes_opening.mp4
+          if-no-files-found: error
+          retention-days: 14
