@@ -70,7 +70,7 @@ jobs:
           test "$(find frames -name '*.png' | wc -l)" -eq 360
           mkdir -p output
           python3 lumen-film/score.py output/score.wav
-          ffmpeg -hide_banner -loglevel error -y -framerate 24 -start_number 1 -i 'frames/%04d.png' -i output/score.wav -frames:v 360 -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k -ar 48000 -t 15 -movflags +faststart output/lumen-film-15s.mp4
+          ffmpeg -hide_banner -loglevel error -y -framerate 24 -start_number 1 -i 'frames/%04d.png' -i output/score.wav -frames:v 360 -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -af 'loudnorm=I=-16:TP=-1.5:LRA=11' -c:a aac -b:a 192k -ar 48000 -t 15 -movflags +faststart output/lumen-film-15s.mp4
           ffmpeg -v error -i output/lumen-film-15s.mp4 -f null -
           ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,nb_frames,r_frame_rate -show_entries format=duration -of json output/lumen-film-15s.mp4 | tee output/metadata.json
           for frame in 24 96 180 270 340; do ffmpeg -loglevel error -y -i output/lumen-film-15s.mp4 -vf "select=eq(n\,$frame)" -vsync 0 -frames:v 1 "output/frame-$frame.png"; done

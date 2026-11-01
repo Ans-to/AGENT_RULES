@@ -82,8 +82,8 @@ def title(name,body,loc,size,start,full,leave=None):
  keys(obj,1,scale=(.001,)*3);keys(obj,start,scale=(.001,)*3);keys(obj,full,scale=(1,)*3)
  if leave:keys(obj,leave-10,scale=(1,)*3);keys(obj,leave,scale=(.001,)*3)
  smooth(obj);return obj
-title('Opening line','A SPARK IN THE DARK',(0,1.38,-6),.17,8,28,100)
-title('Hero title','L U M E N',(0,-1.12,-6),.48,257,284)
-title('Closing line','A LITTLE LIGHT GOES A LONG WAY',(0,-1.50,-6),.145,280,304)
+title('Opening line','A SPARK IN THE DARK',(0,1.12,-6),.17,8,28,100)
+title('Hero title','L U M E N',(0,-.84,-6),.48,257,284)
+title('Closing line','A LITTLE LIGHT GOES A LONG WAY',(0,-1.15,-6),.145,280,304)
 parser=argparse.ArgumentParser();parser.add_argument('--start',type=int,default=1);parser.add_argument('--end',type=int,default=360);parser.add_argument('--output',required=True)
 a=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []);s.frame_start=a.start;s.frame_end=a.end;s.render.filepath=a.output;bpy.ops.render.render(animation=True)
