@@ -1,0 +1,28 @@
+name: Diagnose Cycles render
+on:
+  push:
+    branches: [arena/b7910db9-agent-rules]
+    paths: [.github/workflows/render-cycles-debug.yml]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends blender xvfb xauth libgl1-mesa-dri
+      - name: Diagnose one frame
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          mkdir -p frames
+          set +e
+          xvfb-run -a blender -b --threads 2 --python cycles-premium/scene.py -- --start 1 --end 1 --output "$PWD/frames/" > /tmp/scene-log.txt 2>&1
+          status=$?
+          tail -100 /tmp/scene-log.txt
+          excerpt=$(tail -40 /tmp/scene-log.txt | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::error title=Blender diagnostics::$excerpt"
+          exit "$status"
