@@ -1,0 +1,95 @@
+name: Render CONTACT fight film
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/b7910db9-agent-rules]
+    paths:
+      - fight-film/scene.py
+      - fight-film/score.py
+      - .github/workflows/render-fight-film.yml
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {chunk: '01', start: 1, end: 30}
+          - {chunk: '02', start: 31, end: 60}
+          - {chunk: '03', start: 61, end: 90}
+          - {chunk: '04', start: 91, end: 120}
+          - {chunk: '05', start: 121, end: 150}
+          - {chunk: '06', start: 151, end: 180}
+          - {chunk: '07', start: 181, end: 210}
+          - {chunk: '08', start: 211, end: 240}
+          - {chunk: '09', start: 241, end: 270}
+          - {chunk: '10', start: 271, end: 300}
+          - {chunk: '11', start: 301, end: 330}
+          - {chunk: '12', start: 331, end: 360}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender and virtual display
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends blender xvfb xauth libgl1-mesa-dri
+      - name: Render frames in Blender
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          mkdir -p frames
+          xvfb-run -a blender -b --threads 2 --python fight-film/scene.py -- --start ${{ matrix.start }} --end ${{ matrix.end }} --output "$PWD/frames/"
+          test "$(find frames -name '*.png' | wc -l)" -eq 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fight-film-frames-${{ matrix.chunk }}
+          path: frames/*.png
+          retention-days: 3
+          if-no-files-found: error
+  assemble:
+    needs: render
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/b7910db9-agent-rules
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fight-film-frames-*
+          path: frames
+          merge-multiple: true
+      - name: Assemble and verify video with original score
+        run: |
+          test "$(find frames -name '*.png' | wc -l)" -eq 360
+          mkdir -p output
+          python3 fight-film/score.py output/score.wav
+          ffmpeg -hide_banner -loglevel error -y -framerate 24 -start_number 1 -i 'frames/%04d.png' -i output/score.wav -frames:v 360 -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p -af 'loudnorm=I=-16:TP=-2:LRA=11,alimiter=limit=0.78:level=false:latency=true' -c:a aac -b:a 192k -ar 48000 -t 15 -movflags +faststart output/contact-fight-15s.mp4
+          ffmpeg -v error -i output/contact-fight-15s.mp4 -f null -
+          ffprobe -v error -select_streams v:0 -show_entries stream=codec_name,width,height,nb_frames,r_frame_rate -show_entries format=duration -of json output/contact-fight-15s.mp4 | tee output/metadata.json
+          for frame in 24 96 180 270 340; do ffmpeg -loglevel error -y -i output/contact-fight-15s.mp4 -vf "select=eq(n\,$frame)" -vsync 0 -frames:v 1 "output/frame-$frame.png"; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: blender-contact-fight-15s
+          path: output/
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Publish completed video to this branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --ff-only origin arena/b7910db9-agent-rules
+          mkdir -p fight-film/render
+          cp output/contact-fight-15s.mp4 fight-film/render/contact-fight-15s.mp4
+          git add fight-film/render/contact-fight-15s.mp4
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add rendered CONTACT fight film'
+            git push origin arena/b7910db9-agent-rules
+          fi

@@ -60,8 +60,8 @@ cube('Rear wall',(0,4.7,2),(8,.2,3),wall,.0)
 area('Warm key',(-3,-4,5),(0,0,1),(1,.68,.42),900,5);area('Cool fill',(4,-1,5),(0,0,1),(.32,.62,1),1050,5);area('Rim light',(0,3,4),(0,0,1),(1,.85,.58),1200,4)
 # Frames: anticipation, contact, recovery, counter, kick, dodge, finishing strike.
 frames=[1,35,60,78,94,104,112,130,148,160,171,190,212,228,238,255,270,278,288,310,335,360]
-rootA=[-.92,-.87,-.78,-.71,-.64,-.58,-.58,-.70,-.74,-.68,-.82,-.83,-.87,-.90,-.94,-.90,-.77,-.66,-.68,-.79,-.83,-.83]
-rootB=[.92,.87,.78,.72,.67,.62,.72,.73,.67,.47,.68,.71,.67,.62,.66,.74,.73,.57,.82,.87,.87,.87]
+rootA=[-.92,-.87,-.78,-.71,-.64,-.45,-.58,-.70,-.74,-.50,-.82,-.83,-.87,-.90,-.65,-.90,-.77,-.44,-.68,-.79,-.83,-.83]
+rootB=[.92,.87,.78,.72,.67,.42,.72,.73,.67,.37,.68,.71,.67,.46,.66,.74,.73,.48,.82,.87,.87,.87]
 
 def base(f):
  return {'hip':(0,0,1.0),'chest':(0,0,1.52),'head':(0,0,1.83),
@@ -73,10 +73,10 @@ def base(f):
 def pose(kind,f):
  d=base(f)
  if kind=='windup':d.update(chest=(-f*.07,0,1.46),head=(-f*.09,0,1.77),nearElbow=(-f*.25,-.24,1.37),nearHand=(-f*.37,-.23,1.52),nearKnee=(f*.25,-.14,.50))
- if kind=='punch':d.update(chest=(f*.12,0,1.50),head=(f*.10,0,1.82),nearShoulder=(f*.12,-.2,1.45),nearElbow=(f*.62,-.21,1.54),nearHand=(f*1.25,-.20,1.75),nearKnee=(f*.32,-.14,.51),nearFoot=(f*.43,-.15,.12),farKnee=(-f*.28,.14,.54),farFoot=(-f*.46,.15,.12))
+ if kind=='punch':d.update(chest=(f*.12,0,1.50),head=(f*.10,0,1.82),nearShoulder=(f*.12,-.2,1.45),nearElbow=(f*.62,-.21,1.54),nearHand=(f*.95,-.20,1.75),nearKnee=(f*.32,-.14,.51),nearFoot=(f*.43,-.15,.12),farKnee=(-f*.28,.14,.54),farFoot=(-f*.46,.15,.12))
  if kind=='recoil':d.update(chest=(-f*.13,0,1.43),head=(-f*.20,0,1.74),nearShoulder=(-f*.13,-.20,1.40),farShoulder=(-f*.13,.20,1.40),nearElbow=(-f*.1,-.25,1.20),nearHand=(f*.16,-.25,1.31),nearKnee=(-f*.24,-.14,.48))
  if kind=='block':d.update(nearElbow=(f*.23,-.24,1.42),nearHand=(f*.20,-.22,1.72),farElbow=(f*.06,.22,1.36),farHand=(f*.25,.2,1.66),head=(-f*.07,0,1.8))
- if kind=='kick':d.update(chest=(-f*.13,0,1.47),head=(-f*.16,0,1.78),nearShoulder=(-f*.13,-.2,1.42),farShoulder=(-f*.13,.2,1.42),nearKnee=(f*.72,-.14,1.02),nearFoot=(f*1.45,-.14,1.05),farKnee=(-f*.15,.14,.52),farFoot=(-f*.18,.15,.12),nearElbow=(-f*.3,-.24,1.3),nearHand=(-f*.48,-.2,1.38))
+ if kind=='kick':d.update(chest=(-f*.13,0,1.47),head=(-f*.16,0,1.78),nearShoulder=(-f*.13,-.2,1.42),farShoulder=(-f*.13,.2,1.42),nearKnee=(f*.60,-.14,1.02),nearFoot=(f*1.15,-.14,1.05),farKnee=(-f*.15,.14,.52),farFoot=(-f*.18,.15,.12),nearElbow=(-f*.3,-.24,1.3),nearHand=(-f*.48,-.2,1.38))
  if kind=='duck':d.update(hip=(-f*.06,0,.72),chest=(-f*.22,0,1.09),head=(-f*.3,0,1.35),nearShoulder=(-f*.22,-.2,1.06),farShoulder=(-f*.22,.2,1.06),nearKnee=(f*.24,-.14,.40),farKnee=(-f*.27,.14,.38),nearElbow=(-f*.2,-.2,.9),nearHand=(f*.08,-.24,1.07))
  return d
 A=['guard','guard','guard','windup','windup','punch','guard','guard','block','recoil','guard','guard','block','recoil','duck','duck','windup','punch','guard','guard','guard','guard']
