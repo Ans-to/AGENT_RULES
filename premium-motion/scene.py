@@ -5,7 +5,7 @@ import bpy
 import math
 import argparse
 import sys
-from mathutils import Vector
+from mathutils import Vector, Matrix
 
 FPS=30; END_FRAME=450
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
@@ -63,9 +63,12 @@ grid=bpy.data.objects.new('Moving background grid',None);bpy.context.collection.
 for i in range(-10,11):
  a=cube('Grid X',(i,0,-1.05),(.012,13,.008),DIM_CYAN,0);b=cube('Grid Y',(0,i,-1.05),(13,.012,.008),DIM_CYAN,0);a.parent=grid;b.parent=grid
 key(grid,1,loc=(0,-1.2,0),rot=(0,0,0));key(grid,END_FRAME,loc=(0,1.2,0),rot=(0,0,math.radians(3)));smooth(grid)
-bpy.ops.object.camera_add(location=(0,-.3,14));camera=bpy.context.object;camera.data.lens=48;camera.data.dof.use_dof=False;scene.camera=camera
+bpy.ops.object.camera_add(location=(0,-.3,14));camera=bpy.context.object;camera.data.lens=30;camera.data.dof.use_dof=False;scene.camera=camera
 for frame,loc in [(1,(0,-.4,14.5)),(90,(.5,-.6,13.5)),(180,(-.7,.3,13.)),(270,(1.3,-1.1,12.2)),(360,(-.8,.4,13.4)),(450,(0,-.2,14.))]:
- camera.location=loc;look(camera,(0,0,0));camera.keyframe_insert(data_path='location',frame=frame);camera.keyframe_insert(data_path='rotation_euler',frame=frame)
+ camera.location=loc
+ # Stable world-up framing prevents a near-overhead camera from rolling wildly.
+ forward=(Vector((0,0,0))-camera.location).normalized();right=forward.cross(Vector((0,1,0))).normalized();up=right.cross(forward).normalized();camera.rotation_euler=Matrix((right,up,-forward)).transposed().to_quaternion().to_euler()
+ camera.keyframe_insert(data_path='location',frame=frame);camera.keyframe_insert(data_path='rotation_euler',frame=frame)
 smooth(camera)
 for name,loc,energy,color,size in [('Cyan key light',(5,-4,7),1300,(.15,.75,1),5),('Pink rim light',(-5,2,5),1000,(1,.04,.25),4),('Soft white light',(0,4,8),900,(.55,.7,1),5)]:
  bpy.ops.object.light_add(type='AREA',location=loc);light=bpy.context.object;light.name=name;light.data.energy=energy;light.data.color=color;light.data.shape='DISK';light.data.size=size;look(light,(0,0,0))
@@ -75,6 +78,10 @@ def transition(frame,accent):
   x=-12+i*2;slat=cube('Diagonal transition slat',(x,0,7),(.01,10,.12),accent if i%3==0 else DARK_PANEL,.05);slat.rotation_euler[2]=math.radians(-13)
   for f,s in [(frame+i,.01),(frame+9+i,1.15),(frame+19+i,1.15),(frame+28+i,.01)]:key(slat,f,scale=(s,10,.12))
   smooth(slat)
+  # Do not leave tiny strips visible throughout unrelated scenes.
+  slat.hide_render=True;slat.keyframe_insert(data_path='hide_render',frame=1)
+  slat.hide_render=False;slat.keyframe_insert(data_path='hide_render',frame=frame+i)
+  slat.hide_render=True;slat.keyframe_insert(data_path='hide_render',frame=frame+29+i)
 transition(92,CYAN);transition(220,PINK);transition(340,CYAN)
 for i,char in enumerate('NOVA'):
  o=text('Logo '+char,char,(-3.3+i*2.2,.4,.15),2.65,WHITE,.05);pop(o,7+i*4,20+i*4,76,.9)
