@@ -8,8 +8,8 @@ bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=Fals
 s=bpy.context.scene;s.render.engine='CYCLES';s.cycles.samples=64
 s.render.resolution_x=1920;s.render.resolution_y=1080;s.render.resolution_percentage=100;s.render.fps=24;s.frame_start=1;s.frame_end=360
 s.render.image_settings.file_format='PNG';s.render.image_settings.color_mode='RGB'
-# Denoising retains 64 samples but suppresses low-sample noise on CPU runners.
-s.cycles.use_denoising=True
+# Ubuntu runner Blender lacks OpenImageDenoise; render original 64 samples without denoising.
+s.cycles.use_denoising=False
 if s.world is None:s.world=bpy.data.worlds.new('World')
 s.world.use_nodes=True;bg=s.world.node_tree.nodes['Background'];bg.inputs[0].default_value=(.01,.012,.02,1);bg.inputs[1].default_value=.4
 
