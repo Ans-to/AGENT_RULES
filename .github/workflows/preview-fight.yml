@@ -1,0 +1,42 @@
+name: Preview fight choreography
+on:
+  push:
+    branches: [arena/b7910db9-agent-rules]
+    paths: [.github/workflows/preview-fight.yml]
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/b7910db9-agent-rules
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends blender xvfb xauth libgl1-mesa-dri
+      - name: Render key poses
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          mkdir -p fight-film/previews
+          for frame in 60 104 160 228 278; do
+            set +e
+            xvfb-run -a blender -b --threads 2 --python fight-film/scene.py -- --start "$frame" --end "$frame" --output "$PWD/fight-film/previews/" > /tmp/fight-render.log 2>&1
+            result=$?
+            set -e
+            if [ "$result" -ne 0 ]; then
+              excerpt=$(tail -45 /tmp/fight-render.log | sed ':a;N;$!ba;s/\n/%0A/g')
+              echo "::error title=Blender diagnostics::$excerpt"
+              exit "$result"
+            fi
+          done
+      - name: Publish key poses for inspection
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --ff-only origin arena/b7910db9-agent-rules
+          git add fight-film/previews/*.png
+          git commit -m 'Add fight choreography preview frames'
+          git push origin arena/b7910db9-agent-rules
