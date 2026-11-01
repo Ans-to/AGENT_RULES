@@ -1,4 +1,4 @@
-name: Preview fight choreography
+name: Preview corrected fight choreography
 on:
   push:
     branches: [arena/b7910db9-agent-rules]
