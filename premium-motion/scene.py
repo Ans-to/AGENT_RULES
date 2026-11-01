@@ -103,10 +103,10 @@ for i,radius in enumerate([2.25,2.85,3.55]):
  r1=(math.radians(i*24),math.radians(i*17),0);r2=tuple(math.radians(v) for v in (300+i*30,150+i*20,360+i*80))
  for f,sc,rot in [(235+i*3,(.001,)*3,r1),(258+i*3,(1,)*3,r1),(336,(1,)*3,r2),(348,(.001,)*3,r2)]:key(ring,f,scale=sc,rot=rot)
  smooth(ring)
-for name,value,loc,size,material,start,arrive,leave,rise in [('Object title','DESIGNED',(0,4,.15),.70,WHITE,250,264,329,.45),('Object subtitle','FOR THE NEXT DIMENSION',(0,-4,.15),.38,CYAN,262,276,328,.35)]:o=text(name,value,loc,size,material);pop(o,start,arrive,leave,rise)
+for name,value,loc,size,material,start,arrive,leave,rise in [('Object title','DESIGNED',(0,3.35,.15),.70,WHITE,250,264,329,.45),('Object subtitle','FOR THE NEXT DIMENSION',(0,-3.35,.15),.38,CYAN,262,276,328,.35)]:o=text(name,value,loc,size,material);pop(o,start,arrive,leave,rise)
 for i in range(10):
  a=(i/10)*math.tau;x=math.cos(a)*5;y=math.sin(a)*3.2;o=cube('Floating chrome fragment',(x,y,.2),(.18,.18,.18),SILVER,.06);r1=(0,0,a);r2=(math.radians(180),math.radians(120),a+math.radians(250))
- for f,sc,rot in [(242,(.001,)*3,r1),(265,(1,)*3,r1),(334,(1,)*3,r2),(347,(.001,)*3,r2)]:key(o,f,scale=sc,rot=rot)
+ for f,sc,rot in [(242,(.001,)*3,r1),(265,(.18,)*3,r1),(334,(.18,)*3,r2),(347,(.001,)*3,r2)]:key(o,f,scale=sc,rot=rot)
  smooth(o)
 for name,value,loc,size,material,start,arrive,leave,rise in [('Final top label','NOVA STUDIO PRESENTS',(0,3.2,.18),.42,PINK,360,382,442,.4),('MOVE','MOVE',(0,.9,.20),2.75,WHITE,370,392,443,.9),('BEYOND','BEYOND.',(0,-1.45,.20),2.20,CYAN,382,404,444,.9),('Website','YOURBRAND.COM',(0,-3.55,.18),.30,WHITE,408,420,446,.25)]:o=text(name,value,loc,size,material,.05 if name in ('MOVE','BEYOND') else .03);pop(o,start,arrive,leave,rise)
 line=cube('Final underline',(0,-2.65,.18),(.001,.045,.03),PINK,.02)
