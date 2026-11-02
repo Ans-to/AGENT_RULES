@@ -1,0 +1,2184 @@
+{
+  "objects": [
+    {
+      "name": "Armature",
+      "type": "ARMATURE",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action": "Boxing performance_Armature",
+      "tracks": [
+        {
+          "name": "Drive boat (helm)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Drive boat (helm)_Armature",
+              "action": "Drive boat (helm)_Armature",
+              "start": 1.0,
+              "end": 121.0
+            }
+          ]
+        },
+        {
+          "name": "Row boat",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Row boat_Armature",
+              "action": "Row boat_Armature",
+              "start": 1.0,
+              "end": 58.60000228881836
+            }
+          ]
+        },
+        {
+          "name": "Paddle kayak",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Paddle kayak_Armature",
+              "action": "Paddle kayak_Armature",
+              "start": 1.0,
+              "end": 39.400001525878906
+            }
+          ]
+        },
+        {
+          "name": "Paddle canoe",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Paddle canoe_Armature",
+              "action": "Paddle canoe_Armature",
+              "start": 1.0,
+              "end": 44.19999694824219
+            }
+          ]
+        },
+        {
+          "name": "Ride horse (trot)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Ride horse (trot)_Armature",
+              "action": "Ride horse (trot)_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Ride motorcycle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Ride motorcycle_Armature",
+              "action": "Ride motorcycle_Armature",
+              "start": 1.0,
+              "end": 73.0
+            }
+          ]
+        },
+        {
+          "name": "Ride bicycle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Ride bicycle_Armature",
+              "action": "Ride bicycle_Armature",
+              "start": 1.0,
+              "end": 25.0
+            }
+          ]
+        },
+        {
+          "name": "Sit (passenger)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sit (passenger)_Armature",
+              "action": "Sit (passenger)_Armature",
+              "start": 1.0,
+              "end": 145.0
+            }
+          ]
+        },
+        {
+          "name": "Drive car",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Drive car_Armature",
+              "action": "Drive car_Armature",
+              "start": 1.0,
+              "end": 97.0
+            }
+          ]
+        },
+        {
+          "name": "Throw grenade",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Throw grenade_Armature",
+              "action": "Throw grenade_Armature",
+              "start": 1.0,
+              "end": 37.0
+            }
+          ]
+        },
+        {
+          "name": "Crouch walk (aiming)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Crouch walk (aiming)_Armature",
+              "action": "Crouch walk (aiming)_Armature",
+              "start": 1.0,
+              "end": 29.80000114440918
+            }
+          ]
+        },
+        {
+          "name": "Crouch aim idle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Crouch aim idle_Armature",
+              "action": "Crouch aim idle_Armature",
+              "start": 1.0,
+              "end": 61.0
+            }
+          ]
+        },
+        {
+          "name": "Rifle sprint",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle sprint_Armature",
+              "action": "Rifle sprint_Armature",
+              "start": 1.0,
+              "end": 15.880000114440918
+            }
+          ]
+        },
+        {
+          "name": "Rifle run",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle run_Armature",
+              "action": "Rifle run_Armature",
+              "start": 1.0,
+              "end": 18.280000686645508
+            }
+          ]
+        },
+        {
+          "name": "Rifle strafe right (aiming)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle strafe right (aiming)_Armature",
+              "action": "Rifle strafe right (aiming)_Armature",
+              "start": 1.0,
+              "end": 22.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Rifle strafe left (aiming)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle strafe left (aiming)_Armature",
+              "action": "Rifle strafe left (aiming)_Armature",
+              "start": 1.0,
+              "end": 22.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Rifle walk back (aiming)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle walk back (aiming)_Armature",
+              "action": "Rifle walk back (aiming)_Armature",
+              "start": 1.0,
+              "end": 31.0
+            }
+          ]
+        },
+        {
+          "name": "Rifle walk (aiming)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle walk (aiming)_Armature",
+              "action": "Rifle walk (aiming)_Armature",
+              "start": 1.0,
+              "end": 27.400001525878906
+            }
+          ]
+        },
+        {
+          "name": "Rifle reload",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle reload_Armature",
+              "action": "Rifle reload_Armature",
+              "start": 1.0,
+              "end": 53.80000305175781
+            }
+          ]
+        },
+        {
+          "name": "Rifle fire (full auto)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle fire (full auto)_Armature",
+              "action": "Rifle fire (full auto)_Armature",
+              "start": 1.0,
+              "end": 10.600000381469727
+            }
+          ]
+        },
+        {
+          "name": "Rifle fire (single)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle fire (single)_Armature",
+              "action": "Rifle fire (single)_Armature",
+              "start": 1.0,
+              "end": 11.799999237060547
+            }
+          ]
+        },
+        {
+          "name": "Rifle aim idle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle aim idle_Armature",
+              "action": "Rifle aim idle_Armature",
+              "start": 1.0,
+              "end": 61.0
+            }
+          ]
+        },
+        {
+          "name": "Rifle idle (low ready)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Rifle idle (low ready)_Armature",
+              "action": "Rifle idle (low ready)_Armature",
+              "start": 1.0,
+              "end": 73.0
+            }
+          ]
+        },
+        {
+          "name": "Sword block",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sword block_Armature",
+              "action": "Sword block_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Sword slash",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sword slash_Armature",
+              "action": "Sword slash_Armature",
+              "start": 1.0,
+              "end": 25.0
+            }
+          ]
+        },
+        {
+          "name": "Sword idle (guard)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sword idle (guard)_Armature",
+              "action": "Sword idle (guard)_Armature",
+              "start": 1.0,
+              "end": 73.0
+            }
+          ]
+        },
+        {
+          "name": "Pistol fire",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Pistol fire_Armature",
+              "action": "Pistol fire_Armature",
+              "start": 1.0,
+              "end": 13.0
+            }
+          ]
+        },
+        {
+          "name": "Pistol aim",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Pistol aim_Armature",
+              "action": "Pistol aim_Armature",
+              "start": 1.0,
+              "end": 61.0
+            }
+          ]
+        },
+        {
+          "name": "Pistol idle (low ready)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Pistol idle (low ready)_Armature",
+              "action": "Pistol idle (low ready)_Armature",
+              "start": 1.0,
+              "end": 73.0
+            }
+          ]
+        },
+        {
+          "name": "Full turn 360\u00b0",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Full turn 360\u00b0_Armature",
+              "action": "Full turn 360\u00b0_Armature",
+              "start": 1.0,
+              "end": 55.0
+            }
+          ]
+        },
+        {
+          "name": "Turn right 90\u00b0",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Turn right 90\u00b0_Armature",
+              "action": "Turn right 90\u00b0_Armature",
+              "start": 1.0,
+              "end": 24.19999885559082
+            }
+          ]
+        },
+        {
+          "name": "Turn right 45\u00b0",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Turn right 45\u00b0_Armature",
+              "action": "Turn right 45\u00b0_Armature",
+              "start": 1.0,
+              "end": 19.299999237060547
+            }
+          ]
+        },
+        {
+          "name": "Turn left 90\u00b0",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Turn left 90\u00b0_Armature",
+              "action": "Turn left 90\u00b0_Armature",
+              "start": 1.0,
+              "end": 24.19999885559082
+            }
+          ]
+        },
+        {
+          "name": "Turn left 45\u00b0",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Turn left 45\u00b0_Armature",
+              "action": "Turn left 45\u00b0_Armature",
+              "start": 1.0,
+              "end": 19.299999237060547
+            }
+          ]
+        },
+        {
+          "name": "Sleep",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sleep_Armature",
+              "action": "Sleep_Armature",
+              "start": 1.0,
+              "end": 116.20000457763672
+            }
+          ]
+        },
+        {
+          "name": "Lie down",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Lie down_Armature",
+              "action": "Lie down_Armature",
+              "start": 1.0,
+              "end": 63.39999771118164
+            }
+          ]
+        },
+        {
+          "name": "Stand up (chair)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Stand up (chair)_Armature",
+              "action": "Stand up (chair)_Armature",
+              "start": 1.0,
+              "end": 49.0
+            }
+          ]
+        },
+        {
+          "name": "Sit idle (chair)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sit idle (chair)_Armature",
+              "action": "Sit idle (chair)_Armature",
+              "start": 1.0,
+              "end": 40.0
+            }
+          ]
+        },
+        {
+          "name": "Sit down (chair)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Sit down (chair)_Armature",
+              "action": "Sit down (chair)_Armature",
+              "start": 1.0,
+              "end": 49.0
+            }
+          ]
+        },
+        {
+          "name": "Cry",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Cry_Armature",
+              "action": "Cry_Armature",
+              "start": 1.0,
+              "end": 72.19999694824219
+            }
+          ]
+        },
+        {
+          "name": "Talk",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Talk_Armature",
+              "action": "Talk_Armature",
+              "start": 1.0,
+              "end": 154.60000610351562
+            }
+          ]
+        },
+        {
+          "name": "Laugh",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Laugh_Armature",
+              "action": "Laugh_Armature",
+              "start": 1.0,
+              "end": 58.60000228881836
+            }
+          ]
+        },
+        {
+          "name": "Cheer",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Cheer_Armature",
+              "action": "Cheer_Armature",
+              "start": 1.0,
+              "end": 29.80000114440918
+            }
+          ]
+        },
+        {
+          "name": "Wave",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Wave_Armature",
+              "action": "Wave_Armature",
+              "start": 1.0,
+              "end": 39.400001525878906
+            }
+          ]
+        },
+        {
+          "name": "Carry walk",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Carry walk_Armature",
+              "action": "Carry walk_Armature",
+              "start": 1.0,
+              "end": 31.399999618530273
+            }
+          ]
+        },
+        {
+          "name": "Carry idle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Carry idle_Armature",
+              "action": "Carry idle_Armature",
+              "start": 1.0,
+              "end": 87.39999389648438
+            }
+          ]
+        },
+        {
+          "name": "Push",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Push_Armature",
+              "action": "Push_Armature",
+              "start": 1.0,
+              "end": 63.39999771118164
+            }
+          ]
+        },
+        {
+          "name": "Open door",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Open door_Armature",
+              "action": "Open door_Armature",
+              "start": 1.0,
+              "end": 68.19999694824219
+            }
+          ]
+        },
+        {
+          "name": "Use / press",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Use / press_Armature",
+              "action": "Use / press_Armature",
+              "start": 1.0,
+              "end": 40.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Pick up (ground)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Pick up (ground)_Armature",
+              "action": "Pick up (ground)_Armature",
+              "start": 1.0,
+              "end": 82.60000610351562
+            }
+          ]
+        },
+        {
+          "name": "Get up (from front)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Get up (from front)_Armature",
+              "action": "Get up (from front)_Armature",
+              "start": 1.0,
+              "end": 53.80000305175781
+            }
+          ]
+        },
+        {
+          "name": "Get up (from back)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Get up (from back)_Armature",
+              "action": "Get up (from back)_Armature",
+              "start": 1.0,
+              "end": 53.80000305175781
+            }
+          ]
+        },
+        {
+          "name": "Death (fall backward)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Death (fall backward)_Armature",
+              "action": "Death (fall backward)_Armature",
+              "start": 1.0,
+              "end": 44.19999694824219
+            }
+          ]
+        },
+        {
+          "name": "Death (fall forward)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Death (fall forward)_Armature",
+              "action": "Death (fall forward)_Armature",
+              "start": 1.0,
+              "end": 41.80000305175781
+            }
+          ]
+        },
+        {
+          "name": "Knockdown",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Knockdown_Armature",
+              "action": "Knockdown_Armature",
+              "start": 1.0,
+              "end": 34.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Hit from right",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Hit from right_Armature",
+              "action": "Hit from right_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Hit from left",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Hit from left_Armature",
+              "action": "Hit from left_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Hit from back",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Hit from back_Armature",
+              "action": "Hit from back_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Hit from front",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Hit from front_Armature",
+              "action": "Hit from front_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Hit reaction",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Hit reaction_Armature",
+              "action": "Hit reaction_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Low punch",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Low punch_Armature",
+              "action": "Low punch_Armature",
+              "start": 1.0,
+              "end": 38.19999694824219
+            }
+          ]
+        },
+        {
+          "name": "Punch",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Punch_Armature",
+              "action": "Punch_Armature",
+              "start": 1.0,
+              "end": 22.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Fall",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Fall_Armature",
+              "action": "Fall_Armature",
+              "start": 1.0,
+              "end": 46.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Running jump",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Running jump_Armature",
+              "action": "Running jump_Armature",
+              "start": 1.0,
+              "end": 22.599998474121094
+            }
+          ]
+        },
+        {
+          "name": "Jump land",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Jump land_Armature",
+              "action": "Jump land_Armature",
+              "start": 1.0,
+              "end": 15.40000057220459
+            }
+          ]
+        },
+        {
+          "name": "Jump (in air)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Jump (in air)_Armature",
+              "action": "Jump (in air)_Armature",
+              "start": 1.0,
+              "end": 20.200000762939453
+            }
+          ]
+        },
+        {
+          "name": "Jump start",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Jump start_Armature",
+              "action": "Jump start_Armature",
+              "start": 1.0,
+              "end": 11.799999237060547
+            }
+          ]
+        },
+        {
+          "name": "Jump",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Jump_Armature",
+              "action": "Jump_Armature",
+              "start": 1.0,
+              "end": 51.39999771118164
+            }
+          ]
+        },
+        {
+          "name": "Strafe right",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Strafe right_Armature",
+              "action": "Strafe right_Armature",
+              "start": 1.0,
+              "end": 24.800800323486328
+            }
+          ]
+        },
+        {
+          "name": "Strafe left",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Strafe left_Armature",
+              "action": "Strafe left_Armature",
+              "start": 1.0,
+              "end": 24.800800323486328
+            }
+          ]
+        },
+        {
+          "name": "Walk backwards",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Walk backwards_Armature",
+              "action": "Walk backwards_Armature",
+              "start": 1.0,
+              "end": 31.0
+            }
+          ]
+        },
+        {
+          "name": "Run",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Run_Armature",
+              "action": "Run_Armature",
+              "start": 1.0,
+              "end": 18.599199295043945
+            }
+          ]
+        },
+        {
+          "name": "Model walk (catwalk)",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Model walk (catwalk)_Armature",
+              "action": "Model walk (catwalk)_Armature",
+              "start": 1.0,
+              "end": 26.60000228881836
+            }
+          ]
+        },
+        {
+          "name": "Slouch walk",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Slouch walk_Armature",
+              "action": "Slouch walk_Armature",
+              "start": 1.0,
+              "end": 27.800800323486328
+            }
+          ]
+        },
+        {
+          "name": "Walk",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Walk_Armature",
+              "action": "Walk_Armature",
+              "start": 1.0,
+              "end": 26.60000228881836
+            }
+          ]
+        },
+        {
+          "name": "Crouch idle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Crouch idle_Armature",
+              "action": "Crouch idle_Armature",
+              "start": 1.0,
+              "end": 73.0
+            }
+          ]
+        },
+        {
+          "name": "Idle",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Idle_Armature",
+              "action": "Idle_Armature",
+              "start": 1.0,
+              "end": 77.80000305175781
+            }
+          ]
+        },
+        {
+          "name": "Boxing performance",
+          "mute": true,
+          "strips": [
+            {
+              "name": "Boxing performance_Armature",
+              "action": "Boxing performance_Armature",
+              "start": 1.0,
+              "end": 360.9975891113281
+            }
+          ]
+        }
+      ],
+      "bones": [
+        "Hips",
+        "Spine",
+        "Spine1",
+        "Spine2",
+        "Neck",
+        "Head",
+        "HeadTop_End",
+        "Jaw",
+        "LeftEye",
+        "RightEye",
+        "LeftShoulder",
+        "LeftArm",
+        "LeftForeArm",
+        "LeftHand",
+        "LeftHandThumb1",
+        "LeftHandThumb2",
+        "LeftHandThumb3",
+        "LeftHandThumb4",
+        "LeftHandIndex1",
+        "LeftHandIndex2",
+        "LeftHandIndex3",
+        "LeftHandIndex4",
+        "LeftHandMiddle1",
+        "LeftHandMiddle2",
+        "LeftHandMiddle3",
+        "LeftHandMiddle4",
+        "LeftHandRing1",
+        "LeftHandRing2",
+        "LeftHandRing3",
+        "LeftHandRing4",
+        "LeftHandPinky1",
+        "LeftHandPinky2",
+        "LeftHandPinky3",
+        "LeftHandPinky4",
+        "RightShoulder",
+        "RightArm",
+        "RightForeArm",
+        "RightHand",
+        "RightHandThumb1",
+        "RightHandThumb2",
+        "RightHandThumb3",
+        "RightHandThumb4",
+        "RightHandIndex1",
+        "RightHandIndex2",
+        "RightHandIndex3",
+        "RightHandIndex4",
+        "RightHandMiddle1",
+        "RightHandMiddle2",
+        "RightHandMiddle3",
+        "RightHandMiddle4",
+        "RightHandRing1",
+        "RightHandRing2",
+        "RightHandRing3",
+        "RightHandRing4",
+        "RightHandPinky1",
+        "RightHandPinky2",
+        "RightHandPinky3",
+        "RightHandPinky4",
+        "WeaponR",
+        "LeftUpLeg",
+        "LeftLeg",
+        "LeftFoot",
+        "LeftToeBase",
+        "LeftToe_End",
+        "RightUpLeg",
+        "RightLeg",
+        "RightFoot",
+        "RightToeBase",
+        "RightToe_End"
+      ]
+    },
+    {
+      "name": "Icosphere",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "The_Gangster",
+      "type": "EMPTY",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "The_Gangster.001",
+      "type": "MESH",
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "actions": [
+    [
+      "Boxing performance_Armature",
+      [
+        0.0,
+        359.9975891113281
+      ]
+    ],
+    [
+      "Boxing performance_The_Gangster.001",
+      [
+        0.0,
+        359.9975891113281
+      ]
+    ],
+    [
+      "Carry idle_Armature",
+      [
+        0.0,
+        86.39999389648438
+      ]
+    ],
+    [
+      "Carry idle_The_Gangster.001",
+      [
+        0.0,
+        86.39999389648438
+      ]
+    ],
+    [
+      "Carry walk_Armature",
+      [
+        0.0,
+        30.399999618530273
+      ]
+    ],
+    [
+      "Carry walk_The_Gangster.001",
+      [
+        0.0,
+        30.399999618530273
+      ]
+    ],
+    [
+      "Cheer_Armature",
+      [
+        0.0,
+        28.80000114440918
+      ]
+    ],
+    [
+      "Cheer_The_Gangster.001",
+      [
+        0.0,
+        28.80000114440918
+      ]
+    ],
+    [
+      "Crouch aim idle_Armature",
+      [
+        0.0,
+        60.0
+      ]
+    ],
+    [
+      "Crouch aim idle_The_Gangster.001",
+      [
+        0.0,
+        60.0
+      ]
+    ],
+    [
+      "Crouch idle_Armature",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Crouch idle_The_Gangster.001",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Crouch walk (aiming)_Armature",
+      [
+        0.0,
+        28.80000114440918
+      ]
+    ],
+    [
+      "Crouch walk (aiming)_The_Gangster.001",
+      [
+        0.0,
+        28.80000114440918
+      ]
+    ],
+    [
+      "Cry_Armature",
+      [
+        0.0,
+        71.19999694824219
+      ]
+    ],
+    [
+      "Cry_The_Gangster.001",
+      [
+        0.0,
+        71.19999694824219
+      ]
+    ],
+    [
+      "Death (fall backward)_Armature",
+      [
+        0.0,
+        43.19999694824219
+      ]
+    ],
+    [
+      "Death (fall backward)_The_Gangster.001",
+      [
+        0.0,
+        43.19999694824219
+      ]
+    ],
+    [
+      "Death (fall forward)_Armature",
+      [
+        0.0,
+        40.80000305175781
+      ]
+    ],
+    [
+      "Death (fall forward)_The_Gangster.001",
+      [
+        0.0,
+        40.80000305175781
+      ]
+    ],
+    [
+      "Drive boat (helm)_Armature",
+      [
+        0.0,
+        120.0
+      ]
+    ],
+    [
+      "Drive boat (helm)_The_Gangster.001",
+      [
+        0.0,
+        120.0
+      ]
+    ],
+    [
+      "Drive car_Armature",
+      [
+        0.0,
+        96.0
+      ]
+    ],
+    [
+      "Drive car_The_Gangster.001",
+      [
+        0.0,
+        96.0
+      ]
+    ],
+    [
+      "Fall_Armature",
+      [
+        0.0,
+        45.599998474121094
+      ]
+    ],
+    [
+      "Fall_The_Gangster.001",
+      [
+        0.0,
+        45.599998474121094
+      ]
+    ],
+    [
+      "Full turn 360\u00b0_Armature",
+      [
+        0.0,
+        54.0
+      ]
+    ],
+    [
+      "Full turn 360\u00b0_The_Gangster.001",
+      [
+        0.0,
+        54.0
+      ]
+    ],
+    [
+      "Get up (from back)_Armature",
+      [
+        0.0,
+        52.80000305175781
+      ]
+    ],
+    [
+      "Get up (from back)_The_Gangster.001",
+      [
+        0.0,
+        52.80000305175781
+      ]
+    ],
+    [
+      "Get up (from front)_Armature",
+      [
+        0.0,
+        52.80000305175781
+      ]
+    ],
+    [
+      "Get up (from front)_The_Gangster.001",
+      [
+        0.0,
+        52.80000305175781
+      ]
+    ],
+    [
+      "Hit from back_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from back_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from front_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from front_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from left_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from left_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from right_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit from right_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit reaction_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Hit reaction_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Idle_Armature",
+      [
+        0.0,
+        76.80000305175781
+      ]
+    ],
+    [
+      "Idle_The_Gangster.001",
+      [
+        0.0,
+        76.80000305175781
+      ]
+    ],
+    [
+      "Jump (in air)_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Jump (in air)_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Jump land_Armature",
+      [
+        0.0,
+        14.40000057220459
+      ]
+    ],
+    [
+      "Jump land_The_Gangster.001",
+      [
+        0.0,
+        14.40000057220459
+      ]
+    ],
+    [
+      "Jump start_Armature",
+      [
+        0.0,
+        10.799999237060547
+      ]
+    ],
+    [
+      "Jump start_The_Gangster.001",
+      [
+        0.0,
+        10.799999237060547
+      ]
+    ],
+    [
+      "Jump_Armature",
+      [
+        0.0,
+        50.39999771118164
+      ]
+    ],
+    [
+      "Jump_The_Gangster.001",
+      [
+        0.0,
+        50.39999771118164
+      ]
+    ],
+    [
+      "Knockdown_Armature",
+      [
+        0.0,
+        33.599998474121094
+      ]
+    ],
+    [
+      "Knockdown_The_Gangster.001",
+      [
+        0.0,
+        33.599998474121094
+      ]
+    ],
+    [
+      "Laugh_Armature",
+      [
+        0.0,
+        57.60000228881836
+      ]
+    ],
+    [
+      "Laugh_The_Gangster.001",
+      [
+        0.0,
+        57.60000228881836
+      ]
+    ],
+    [
+      "Lie down_Armature",
+      [
+        0.0,
+        62.39999771118164
+      ]
+    ],
+    [
+      "Lie down_The_Gangster.001",
+      [
+        0.0,
+        62.39999771118164
+      ]
+    ],
+    [
+      "Low punch_Armature",
+      [
+        0.0,
+        37.19999694824219
+      ]
+    ],
+    [
+      "Low punch_The_Gangster.001",
+      [
+        0.0,
+        37.19999694824219
+      ]
+    ],
+    [
+      "Model walk (catwalk)_Armature",
+      [
+        0.0,
+        25.60000228881836
+      ]
+    ],
+    [
+      "Model walk (catwalk)_The_Gangster.001",
+      [
+        0.0,
+        25.60000228881836
+      ]
+    ],
+    [
+      "Open door_Armature",
+      [
+        0.0,
+        67.19999694824219
+      ]
+    ],
+    [
+      "Open door_The_Gangster.001",
+      [
+        0.0,
+        67.19999694824219
+      ]
+    ],
+    [
+      "Paddle canoe_Armature",
+      [
+        0.0,
+        43.19999694824219
+      ]
+    ],
+    [
+      "Paddle canoe_The_Gangster.001",
+      [
+        0.0,
+        43.19999694824219
+      ]
+    ],
+    [
+      "Paddle kayak_Armature",
+      [
+        0.0,
+        38.400001525878906
+      ]
+    ],
+    [
+      "Paddle kayak_The_Gangster.001",
+      [
+        0.0,
+        38.400001525878906
+      ]
+    ],
+    [
+      "Pick up (ground)_Armature",
+      [
+        0.0,
+        81.60000610351562
+      ]
+    ],
+    [
+      "Pick up (ground)_The_Gangster.001",
+      [
+        0.0,
+        81.60000610351562
+      ]
+    ],
+    [
+      "Pistol aim_Armature",
+      [
+        0.0,
+        60.0
+      ]
+    ],
+    [
+      "Pistol aim_The_Gangster.001",
+      [
+        0.0,
+        60.0
+      ]
+    ],
+    [
+      "Pistol fire_Armature",
+      [
+        0.0,
+        12.0
+      ]
+    ],
+    [
+      "Pistol fire_The_Gangster.001",
+      [
+        0.0,
+        12.0
+      ]
+    ],
+    [
+      "Pistol idle (low ready)_Armature",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Pistol idle (low ready)_The_Gangster.001",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Punch_Armature",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Punch_The_Gangster.001",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Push_Armature",
+      [
+        0.0,
+        62.39999771118164
+      ]
+    ],
+    [
+      "Push_The_Gangster.001",
+      [
+        0.0,
+        62.39999771118164
+      ]
+    ],
+    [
+      "Ride bicycle_Armature",
+      [
+        0.0,
+        24.0
+      ]
+    ],
+    [
+      "Ride bicycle_The_Gangster.001",
+      [
+        0.0,
+        24.0
+      ]
+    ],
+    [
+      "Ride horse (trot)_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Ride horse (trot)_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Ride motorcycle_Armature",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Ride motorcycle_The_Gangster.001",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Rifle aim idle_Armature",
+      [
+        0.0,
+        60.0
+      ]
+    ],
+    [
+      "Rifle aim idle_The_Gangster.001",
+      [
+        0.0,
+        60.0
+      ]
+    ],
+    [
+      "Rifle fire (full auto)_Armature",
+      [
+        0.0,
+        9.600000381469727
+      ]
+    ],
+    [
+      "Rifle fire (full auto)_The_Gangster.001",
+      [
+        0.0,
+        9.600000381469727
+      ]
+    ],
+    [
+      "Rifle fire (single)_Armature",
+      [
+        0.0,
+        10.799999237060547
+      ]
+    ],
+    [
+      "Rifle fire (single)_The_Gangster.001",
+      [
+        0.0,
+        10.799999237060547
+      ]
+    ],
+    [
+      "Rifle idle (low ready)_Armature",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Rifle idle (low ready)_The_Gangster.001",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Rifle reload_Armature",
+      [
+        0.0,
+        52.80000305175781
+      ]
+    ],
+    [
+      "Rifle reload_The_Gangster.001",
+      [
+        0.0,
+        52.80000305175781
+      ]
+    ],
+    [
+      "Rifle run_Armature",
+      [
+        0.0,
+        17.280000686645508
+      ]
+    ],
+    [
+      "Rifle run_The_Gangster.001",
+      [
+        0.0,
+        17.280000686645508
+      ]
+    ],
+    [
+      "Rifle sprint_Armature",
+      [
+        0.0,
+        14.880000114440918
+      ]
+    ],
+    [
+      "Rifle sprint_The_Gangster.001",
+      [
+        0.0,
+        14.880000114440918
+      ]
+    ],
+    [
+      "Rifle strafe left (aiming)_Armature",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Rifle strafe left (aiming)_The_Gangster.001",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Rifle strafe right (aiming)_Armature",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Rifle strafe right (aiming)_The_Gangster.001",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Rifle walk (aiming)_Armature",
+      [
+        0.0,
+        26.400001525878906
+      ]
+    ],
+    [
+      "Rifle walk (aiming)_The_Gangster.001",
+      [
+        0.0,
+        26.400001525878906
+      ]
+    ],
+    [
+      "Rifle walk back (aiming)_Armature",
+      [
+        0.0,
+        30.0
+      ]
+    ],
+    [
+      "Rifle walk back (aiming)_The_Gangster.001",
+      [
+        0.0,
+        30.0
+      ]
+    ],
+    [
+      "Row boat_Armature",
+      [
+        0.0,
+        57.60000228881836
+      ]
+    ],
+    [
+      "Row boat_The_Gangster.001",
+      [
+        0.0,
+        57.60000228881836
+      ]
+    ],
+    [
+      "Run_Armature",
+      [
+        0.0,
+        17.599199295043945
+      ]
+    ],
+    [
+      "Run_The_Gangster.001",
+      [
+        0.0,
+        17.599199295043945
+      ]
+    ],
+    [
+      "Running jump_Armature",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Running jump_The_Gangster.001",
+      [
+        0.0,
+        21.599998474121094
+      ]
+    ],
+    [
+      "Sit (passenger)_Armature",
+      [
+        0.0,
+        144.0
+      ]
+    ],
+    [
+      "Sit (passenger)_The_Gangster.001",
+      [
+        0.0,
+        144.0
+      ]
+    ],
+    [
+      "Sit down (chair)_Armature",
+      [
+        0.0,
+        48.0
+      ]
+    ],
+    [
+      "Sit down (chair)_The_Gangster.001",
+      [
+        0.0,
+        48.0
+      ]
+    ],
+    [
+      "Sit idle (chair)_Armature",
+      [
+        0.0,
+        39.0
+      ]
+    ],
+    [
+      "Sit idle (chair)_The_Gangster.001",
+      [
+        0.0,
+        39.0
+      ]
+    ],
+    [
+      "Sleep_Armature",
+      [
+        0.0,
+        115.20000457763672
+      ]
+    ],
+    [
+      "Sleep_The_Gangster.001",
+      [
+        0.0,
+        115.20000457763672
+      ]
+    ],
+    [
+      "Slouch walk_Armature",
+      [
+        0.0,
+        26.800800323486328
+      ]
+    ],
+    [
+      "Slouch walk_The_Gangster.001",
+      [
+        0.0,
+        26.800800323486328
+      ]
+    ],
+    [
+      "Stand up (chair)_Armature",
+      [
+        0.0,
+        48.0
+      ]
+    ],
+    [
+      "Stand up (chair)_The_Gangster.001",
+      [
+        0.0,
+        48.0
+      ]
+    ],
+    [
+      "Strafe left_Armature",
+      [
+        0.0,
+        23.800800323486328
+      ]
+    ],
+    [
+      "Strafe left_The_Gangster.001",
+      [
+        0.0,
+        23.800800323486328
+      ]
+    ],
+    [
+      "Strafe right_Armature",
+      [
+        0.0,
+        23.800800323486328
+      ]
+    ],
+    [
+      "Strafe right_The_Gangster.001",
+      [
+        0.0,
+        23.800800323486328
+      ]
+    ],
+    [
+      "Sword block_Armature",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Sword block_The_Gangster.001",
+      [
+        0.0,
+        19.200000762939453
+      ]
+    ],
+    [
+      "Sword idle (guard)_Armature",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Sword idle (guard)_The_Gangster.001",
+      [
+        0.0,
+        72.0
+      ]
+    ],
+    [
+      "Sword slash_Armature",
+      [
+        0.0,
+        24.0
+      ]
+    ],
+    [
+      "Sword slash_The_Gangster.001",
+      [
+        0.0,
+        24.0
+      ]
+    ],
+    [
+      "Talk_Armature",
+      [
+        0.0,
+        153.60000610351562
+      ]
+    ],
+    [
+      "Talk_The_Gangster.001",
+      [
+        0.0,
+        153.60000610351562
+      ]
+    ],
+    [
+      "Throw grenade_Armature",
+      [
+        0.0,
+        36.0
+      ]
+    ],
+    [
+      "Throw grenade_The_Gangster.001",
+      [
+        0.0,
+        36.0
+      ]
+    ],
+    [
+      "Turn left 45\u00b0_Armature",
+      [
+        0.0,
+        18.299999237060547
+      ]
+    ],
+    [
+      "Turn left 45\u00b0_The_Gangster.001",
+      [
+        0.0,
+        18.299999237060547
+      ]
+    ],
+    [
+      "Turn left 90\u00b0_Armature",
+      [
+        0.0,
+        23.19999885559082
+      ]
+    ],
+    [
+      "Turn left 90\u00b0_The_Gangster.001",
+      [
+        0.0,
+        23.19999885559082
+      ]
+    ],
+    [
+      "Turn right 45\u00b0_Armature",
+      [
+        0.0,
+        18.299999237060547
+      ]
+    ],
+    [
+      "Turn right 45\u00b0_The_Gangster.001",
+      [
+        0.0,
+        18.299999237060547
+      ]
+    ],
+    [
+      "Turn right 90\u00b0_Armature",
+      [
+        0.0,
+        23.19999885559082
+      ]
+    ],
+    [
+      "Turn right 90\u00b0_The_Gangster.001",
+      [
+        0.0,
+        23.19999885559082
+      ]
+    ],
+    [
+      "Use / press_Armature",
+      [
+        0.0,
+        39.599998474121094
+      ]
+    ],
+    [
+      "Use / press_The_Gangster.001",
+      [
+        0.0,
+        39.599998474121094
+      ]
+    ],
+    [
+      "Walk backwards_Armature",
+      [
+        0.0,
+        30.0
+      ]
+    ],
+    [
+      "Walk backwards_The_Gangster.001",
+      [
+        0.0,
+        30.0
+      ]
+    ],
+    [
+      "Walk_Armature",
+      [
+        0.0,
+        25.60000228881836
+      ]
+    ],
+    [
+      "Walk_The_Gangster.001",
+      [
+        0.0,
+        25.60000228881836
+      ]
+    ],
+    [
+      "Wave_Armature",
+      [
+        0.0,
+        38.400001525878906
+      ]
+    ],
+    [
+      "Wave_The_Gangster.001",
+      [
+        0.0,
+        38.400001525878906
+      ]
+    ]
+  ]
+}
