@@ -13,7 +13,16 @@ jobs:
         with:
           ref: arena/b7910db9-agent-rules
       - run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends blender
-      - run: blender -b --python-exit-code 1 --python fight-film/human-test/inspect.py
+      - run: |
+          set +e
+          blender -b --python-exit-code 1 --python fight-film/human-test/inspect.py > /tmp/blender.log 2>&1
+          result=$?
+          set -e
+          if [ "$result" -ne 0 ]; then
+            excerpt=$(tail -50 /tmp/blender.log | sed ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error title=Blender diagnostics::$excerpt"
+            exit "$result"
+          fi
       - run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
