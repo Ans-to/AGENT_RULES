@@ -41,7 +41,7 @@ def fighter(path,side,offset):
     t=f-start
     if 0<=t<22:other=cache['punch'][t];w=smoothstep(t/5)*smoothstep((22-t)/6)
    else:
-    t=f-(start+8)
+    t=f-(start+10)
     if 0<=t<20:other=cache['hit'][t];w=smoothstep((t+1)/4)*smoothstep((20-t)/7)
   for i,b in enumerate(bones):
    loc,rot,sc=base[i]
@@ -57,7 +57,12 @@ def fighter(path,side,offset):
  # Maintain approximate central spacing by cancelling the recorded hip drift (but not its height).
  for f in range(1,361):
   s.frame_set(f);bpy.context.view_layer.update();hip=arm.matrix_world@arm.pose.bones['Hips'].head
-  desired=-.65 if side==0 else .65
+  close=0.0
+  for start,who in events:
+   t=f-start
+   close=max(close,smoothstep((t+3)/12)*smoothstep((24-t)/10))
+  separation=.65-.30*close
+  desired=-separation if side==0 else separation
   root.location.x += desired-hip.x;root.location.y -= hip.y
   root.keyframe_insert(data_path='location',frame=f)
  return root,arm
