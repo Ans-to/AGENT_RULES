@@ -1,0 +1,23 @@
+name: Inspect rigged fight characters
+on:
+  push:
+    branches: [arena/b7910db9-agent-rules]
+    paths: [.github/workflows/inspect-human-fight.yml, fight-film/human-test/inspect.py]
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/b7910db9-agent-rules
+      - run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends blender
+      - run: blender -b --python-exit-code 1 --python fight-film/human-test/inspect.py
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --ff-only origin arena/b7910db9-agent-rules
+          git add fight-film/human-test/import-info.json
+          git commit -m 'Inspect human animation rig'
+          git push origin arena/b7910db9-agent-rules
