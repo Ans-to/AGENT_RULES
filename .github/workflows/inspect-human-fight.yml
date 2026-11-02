@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: arena/b7910db9-agent-rules
-      - run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends blender
+      - run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends blender python3-numpy
       - run: |
           set +e
           blender -b --python-exit-code 1 --python fight-film/human-test/inspect.py > /tmp/blender.log 2>&1
