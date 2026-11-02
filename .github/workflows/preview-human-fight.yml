@@ -1,0 +1,35 @@
+name: Preview motion-captured human fighter
+on:
+  push:
+    branches: [arena/b7910db9-agent-rules]
+    paths: [.github/workflows/preview-human-fight.yml, fight-film/human-test/poses.py]
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/b7910db9-agent-rules
+      - run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends blender python3-numpy xvfb xauth libgl1-mesa-dri
+      - env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set +e
+          xvfb-run -a blender -b --threads 2 --python-exit-code 1 --python fight-film/human-test/poses.py > /tmp/render.log 2>&1
+          result=$?
+          set -e
+          if [ "$result" -ne 0 ]; then
+            excerpt=$(tail -40 /tmp/render.log | sed ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error title=Blender diagnostics::$excerpt"
+            exit "$result"
+          fi
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --ff-only origin arena/b7910db9-agent-rules
+          git add fight-film/human-test/poses/*.png fight-film/human-test/joints.json
+          git commit -m 'Publish motion capture pose study'
+          git push origin arena/b7910db9-agent-rules
